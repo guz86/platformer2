@@ -24,7 +24,9 @@ public class Hero : MonoBehaviour
         bool isJumping = _direction.y > 0;
         if (isJumping)
         {
-            if (isGraunded())
+            //избавляемся от нежелательного поведения с прыжком && _rigidbody.velocity.y <= 0.1f при 0 могут
+            // возникнуть проблемы с прыжком с пружинящей поверхности
+            if (isGraunded() && _rigidbody.velocity.y <= 0.1f)
             {
                 _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
             } 

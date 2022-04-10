@@ -566,7 +566,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 2ea0a82d-99c9-4a91-88fe-66407ab6eec4
-    m_ActionName: Hero/New action[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionName: Hero/WSAD[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 361735191}
+        m_TargetAssemblyTypeName: HeroInputReader, Assembly-CSharp
+        m_MethodName: OnMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 08145e15-cd9b-41c2-a3f4-e2c3c9f4dfd5
+    m_ActionName: Hero/Arrows[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Hero
@@ -604,8 +620,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.75, y: 0.875}
+  m_Offset: {x: 0, y: 0.002443105}
+  m_Size: {x: 0.75, y: 0.8701332}
   m_Direction: 0
 --- !u!50 &361735195
 Rigidbody2D:
@@ -2912,7 +2928,7 @@ GameObject:
   - component: {fileID: 1840748510}
   - component: {fileID: 1840748513}
   - component: {fileID: 1840748512}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrel_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2978,7 +2994,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840748509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.76, y: -1.5712372, z: 0}
+  m_LocalPosition: {x: -1.76, y: -1.533, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2997,8 +3013,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017593354, y: -0.066173196}
-  m_Size: {x: 0.7190314, y: 0.81286335}
+  m_Offset: {x: -0.017593354, y: -0.061718225}
+  m_Size: {x: 0.7190314, y: 0.8039534}
   m_Direction: 0
 --- !u!50 &1840748513
 Rigidbody2D:
