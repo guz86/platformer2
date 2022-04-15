@@ -8,8 +8,10 @@ public class Hero : MonoBehaviour
     [SerializeField] private float _groundCheckRadius;
     [SerializeField] private Vector3 _groundCheckPoisitionDelta;
     
+    
     private Rigidbody2D _rigidbody;
     private Vector2 _direction;
+    public int coints;
     
     private void Awake()
     {
