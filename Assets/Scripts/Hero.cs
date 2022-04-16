@@ -11,11 +11,13 @@ public class Hero : MonoBehaviour
     
     private Rigidbody2D _rigidbody;
     private Vector2 _direction;
+    private Animator _animator;
     public int coints;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -39,8 +41,8 @@ public class Hero : MonoBehaviour
         {
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
         }
-
-        
+        // бежим влево или вправо
+        _animator.SetBool("is-running", _direction.x != 0);
     }
 
     public void SetDirection(Vector2 direction)
