@@ -12,6 +12,7 @@ public class Hero : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Vector2 _direction;
     private Animator _animator;
+    private SpriteRenderer _sprite;
 
     private static readonly int IsGround = Animator.StringToHash("is-ground");
     private static readonly int IsRunning = Animator.StringToHash("is-running");
@@ -24,6 +25,7 @@ public class Hero : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -54,6 +56,20 @@ public class Hero : MonoBehaviour
         _animator.SetFloat(VerticalVelocity, _rigidbody.velocity.y);
         // на земле?
         _animator.SetBool(IsGround, isGround);
+
+        UpdateSpriteDirection();
+    }
+
+    private void UpdateSpriteDirection()
+    {
+        if (_direction.x > 0)
+        {
+            _sprite.flipX = false;
+        }
+        else if (_direction.x < 0)
+        {
+            _sprite.flipX = true;
+        }
     }
 
     public void SetDirection(Vector2 direction)
