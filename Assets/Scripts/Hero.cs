@@ -12,6 +12,12 @@ public class Hero : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Vector2 _direction;
     private Animator _animator;
+
+    private static readonly int IsGround = Animator.StringToHash("is-ground");
+    private static readonly int IsRunning = Animator.StringToHash("is-running");
+    private static readonly int VerticalVelocity = Animator.StringToHash("vertical-velocity");
+
+    
     public int coints;
     
     private void Awake()
@@ -26,11 +32,12 @@ public class Hero : MonoBehaviour
         
         // прыжок
         bool isJumping = _direction.y > 0;
+        var isGround = isGrounded();
         if (isJumping)
         {
             //избавляемся от нежелательного поведения с прыжком && _rigidbody.velocity.y <= 0.1f при 0 могут
             // возникнуть проблемы с прыжком с пружинящей поверхности
-            if (isGraunded() && _rigidbody.velocity.y <= 0.1f)
+            if (isGround && _rigidbody.velocity.y <= 0.1f)
             {
                 _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
             } 
@@ -42,11 +49,11 @@ public class Hero : MonoBehaviour
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
         }
         // бежим влево или вправо
-        _animator.SetBool("is-running", _direction.x != 0);
+        _animator.SetBool(IsRunning, _direction.x != 0);
         // летим вверх или вниз
-        _animator.SetFloat("vertical-velocity", _rigidbody.velocity.y);
+        _animator.SetFloat(VerticalVelocity, _rigidbody.velocity.y);
         // на земле?
-        _animator.SetBool("is-ground", isGraunded());
+        _animator.SetBool(IsGround, isGround);
     }
 
     public void SetDirection(Vector2 direction)
@@ -55,7 +62,7 @@ public class Hero : MonoBehaviour
     }
     
     //пересекается ли объект с землей
-    private bool isGraunded()
+    private bool isGrounded()
     {
         //луч
         //var hit = Physics2D.Raycast(transform.position, Vector2.down,1,_groundLayer);
@@ -68,8 +75,8 @@ public class Hero : MonoBehaviour
     //отслеживание
     private void OnDrawGizmos()
     {
-        //Debug.DrawRay(transform.position,Vector3.down, isGraunded() ? Color.green : Color.red);
-        Gizmos.color = isGraunded() ? Color.green : Color.red;
+        //Debug.DrawRay(transform.position,Vector3.down, isGrounded() ? Color.green : Color.red);
+        Gizmos.color = isGrounded() ? Color.green : Color.red;
         Gizmos.DrawSphere(transform.position + _groundCheckPoisitionDelta, _groundCheckRadius);
     }
     
