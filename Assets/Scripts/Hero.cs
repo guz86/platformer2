@@ -43,6 +43,10 @@ public class Hero : MonoBehaviour
         }
         // бежим влево или вправо
         _animator.SetBool("is-running", _direction.x != 0);
+        // летим вверх или вниз
+        _animator.SetFloat("vertical-velocity", _rigidbody.velocity.y);
+        // на земле?
+        _animator.SetBool("is-ground", isGraunded());
     }
 
     public void SetDirection(Vector2 direction)

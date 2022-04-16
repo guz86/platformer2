@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 137872306}
+  _hero: {fileID: 361735193}
 --- !u!114 &137872308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 158504634}
+  _hero: {fileID: 361735193}
 --- !u!114 &158504636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,6 +511,7 @@ GameObject:
   - component: {fileID: 361735193}
   - component: {fileID: 361735195}
   - component: {fileID: 361735194}
+  - component: {fileID: 361735196}
   m_Layer: 0
   m_Name: Hero_0
   m_TagString: Player
@@ -556,12 +559,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6146700129834819302, guid: 64bdc64447775c44b9e3f0e04a9bcb6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e88484d9cb737f4680fd9f2a1ce4972, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.75, y: 0.875}
+  m_Size: {x: 2, y: 1.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -675,6 +678,7 @@ MonoBehaviour:
     m_Bits: 64
   _groundCheckRadius: 0.28
   _groundCheckPoisitionDelta: {x: 0, y: -0.23, z: 0}
+  coints: 0
 --- !u!70 &361735194
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -712,6 +716,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &361735196
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361735188}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9683fe9ecb8735e49b8ee93623901e86, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &515960379
 GameObject:
   m_ObjectHideFlags: 0
@@ -2729,6 +2752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 1893194102}
+  _hero: {fileID: 361735193}
 --- !u!114 &1893194104
 MonoBehaviour:
   m_ObjectHideFlags: 0
