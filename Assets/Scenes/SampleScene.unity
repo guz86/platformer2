@@ -2861,7 +2861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7402bfb0ca1166f4885b1adbaf319ea1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frameRate: 20
+  _frameRate: 10
   _loop: 1
   _sprites:
   - {fileID: -2322180950842035098, guid: 25c2a845941a66c468b6036d2fef3ee1, type: 3}
