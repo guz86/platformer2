@@ -24,21 +24,27 @@ public class SpriteAnimation : MonoBehaviour
 
     // время для следующего обновления текущего спрайта
     private float _nextFrameTime;
-    private bool _isPlaying = true;
+    //private bool _isPlaying = true;
 
     private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
+    }
+
+    private void OnEnable()
+    {
+        
         // сколько времени будет длится 1 кадр 
         _secondPerFrame = 1f / _frameRate;
         // текущее время + количество секунд на фрейм = когда следующий апдейт кадра
         _nextFrameTime = Time.time + _secondPerFrame;
+        _currentSpriteIndex = 0;
     }
 
     private void Update()
     {
-        // если не проигрывается или если больше текущего времени, то пропустить кадр
-        if (!_isPlaying || _nextFrameTime > Time.time) return;
+        // если больше текущего времени, то пропустить кадр
+        if (_nextFrameTime > Time.time) return;
 
         // если наступило время для смены кадра
         // чтобы не выйти за границы массива спрайтов
@@ -51,7 +57,7 @@ public class SpriteAnimation : MonoBehaviour
             }
             else
             {
-                _isPlaying = false;
+                enabled = false; // выключить
                 _onComplete?.Invoke();
                 return;
             }
