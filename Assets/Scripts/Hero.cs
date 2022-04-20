@@ -51,9 +51,9 @@ public class Hero : MonoBehaviour
          
         if (isJumping)
         {
-            //избавляемся от нежелательного поведения с прыжком && _rigidbody.velocity.y <= 0.1f при 0 могут
+            //избавляемся от нежелательного поведения с прыжком && _rigidbody.velocity.y <= 0.01f при 0 могут
             // возникнуть проблемы с прыжком с пружинящей поверхности
-            if (isGround && _rigidbody.velocity.y <= 0.1f)
+            if (isGround && _rigidbody.velocity.y <= 0.01f)
             {
                 // метод AddForce добавляет силу (куда и как)
                 _rigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
@@ -106,14 +106,15 @@ public class Hero : MonoBehaviour
     // разворот спрайта
     private void UpdateSpriteDirection()
     {
-        if (_direction.x > 0)
-        {
-            _sprite.flipX = false;
-        }
-        else if (_direction.x < 0)
-        {
-            _sprite.flipX = true;
-        }
+        // if (_direction.x > 0)
+        // {
+        //     _sprite.flipX = false;
+        // }
+        // else if (_direction.x < 0)
+        // {
+        //     _sprite.flipX = true;
+        // }
+         _sprite.flipX = _direction.x < 0 ? true : false;
     }
 
     
