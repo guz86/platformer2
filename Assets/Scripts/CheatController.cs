@@ -7,28 +7,27 @@ public class CheatController : MonoBehaviour
 {
     // ввод будем сохранять в какую-то строку, строка будет жить какое-то время
     private string _currentInput;
-    
+
     // переменная которая будет сбрасывать текущий Input
     private float _inputTime;
-    
+
     //строка будет жить какое-то время
     [SerializeField] private float _inputTimeToLive;
-    
+
     // нужно где то отдельно хранить читы, это будет отдельный объект
     [SerializeField] private CheatItems[] _cheats;
-    
+
     private void Awake()
     {
         // нужно получить ввод с клавиатуры, добавим метод обработчик OnTextInput
         // подписываемся на ввод текста с клавиатуры
         Keyboard.current.onTextInput += OnTextInput;
-        
     }
+
     private void OnDestroy()
     {
         // отписываеся
         Keyboard.current.onTextInput -= OnTextInput;
-        
     }
 
     private void OnTextInput(char InputChar)
@@ -51,9 +50,7 @@ public class CheatController : MonoBehaviour
                 cheatItem.Action.Invoke();
                 _currentInput = string.Empty;
             }
-            
         }
-        
     }
 
     private void Update()
@@ -69,7 +66,7 @@ public class CheatController : MonoBehaviour
             _inputTime -= Time.deltaTime;
         }
     }
-    
+
     //чтобы можно было использовать поля в качестве [SerializeField]
     [Serializable]
     // создадим отдельный класс для читов
