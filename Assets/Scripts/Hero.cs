@@ -5,24 +5,27 @@ public class Hero : MonoBehaviour
 {
     // скорость перемещения влево вправо
     [SerializeField] private float _speed;
+
     // величина с которой будем прыгать вверх
     [SerializeField] private float _jumpSpeed;
+
     // Ground указываем для поверхностей от которых можно прыгать, на поверхности вешаем слой Ground
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckRadius;
     [SerializeField] private Vector3 _groundCheckPoisitionDelta;
 
-    
-
     // направление перемещения
     private Vector2 _direction;
+
     // заберем физическое тело
     private Rigidbody2D _rigidbody;
+
     //стоим ли земле
     private bool _isGrounded;
+
     // можно ли делать двойной прыжок
     private bool _allowDoubleJump;
-    
+
     private Animator _animator;
     private SpriteRenderer _sprite;
 
@@ -42,21 +45,20 @@ public class Hero : MonoBehaviour
 
     private void Update()
     {
-        
         // стоим ли на земле? // 
         _isGrounded = IsGrounded();
     }
 
     // для физического перемещения вычисления в FixedUpdate
     private void FixedUpdate()
-    { 
+    {
         // ПЕРЕМЕЩЕНИЕ, как идем, влево вправо
         var xVelocity = _direction.x * _speed;
         // ПРЫЖОК, как прыгаем
         var yVelocity = CalculateYVelocity();
         // ПЕРЕМЕЩЕНИЕ
         _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
-        
+
         /* 
         // от длины вектора _rigidbody.velocity будет зависеть скорость и направление перемещения
         // телу задаем скорость в каком то направлении, ставим FreezeRotation z чтобы не вращался
@@ -105,13 +107,13 @@ public class Hero : MonoBehaviour
         // прыжок
         // текущее положение
         var yVelocity = _rigidbody.velocity.y;
-        
+
         //если стоим на земле, то можем сделать двойной прыжок
         if (_isGrounded) _allowDoubleJump = true;
-        
+
         // следим за тем нажали ли мы кнопку вверх, изменилась ли координата y
         bool isJumpingPressing = _direction.y > 0;
-        
+
         if (isJumpingPressing)
         {
             // рассчитаем скорость прыжка
@@ -124,6 +126,7 @@ public class Hero : MonoBehaviour
             yVelocity *= 0.5f;
             //_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
         }
+
         return yVelocity;
     }
 
@@ -134,7 +137,7 @@ public class Hero : MonoBehaviour
         var isFalling = _rigidbody.velocity.y <= 0.01f;
         // если мы не падаем, то не можем прыгать
         if (!isFalling) return yVelocity;
-        
+
         //избавляемся от нежелательного поведения с прыжком && _rigidbody.velocity.y <= 0.01f при 0 могут
         // возникнуть проблемы с прыжком с пружинящей поверхности
         if (_isGrounded)
@@ -148,7 +151,7 @@ public class Hero : MonoBehaviour
             // запретим прыгать 2й раз
             _allowDoubleJump = false;
         }
-        
+
         return yVelocity;
     }
 
@@ -168,7 +171,7 @@ public class Hero : MonoBehaviour
             Vector2.down, 0, _groundLayer);
         return hit.collider != null;
     }
-    
+
     //отслеживание пересечения с землей
     private void OnDrawGizmos()
     {
@@ -188,8 +191,6 @@ public class Hero : MonoBehaviour
         // {
         //     _sprite.flipX = true;
         // }
-         _sprite.flipX = _direction.x < 0 ? true : false;
+        _sprite.flipX = _direction.x < 0 ? true : false;
     }
-
-    
 }

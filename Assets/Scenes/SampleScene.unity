@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmTreeBackgroundSheet_0 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8518961810895114776, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
+      propertyPath: _frameRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8518961810895114777, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -442,8 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d902a25521e35824fa7ad57818b95f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _jumpSpeed: 12
+  _speed: 4
+  _jumpSpeed: 15
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -623,6 +627,8 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -729,6 +735,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 32
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
+  m_StretchFill: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b282303b4144dd742bf1c7876beb9c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputTimeToLive: 1.2
+  _cheats:
+  - Name: reset
+    Action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1665712550}
+          m_TargetAssemblyTypeName: ReloadLevelComponent, Assembly-CSharp
+          m_MethodName: Reload
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &660019508
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +984,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 17ec9d9af491a2840b993e63429a31ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -964,6 +1020,10 @@ PrefabInstance:
     - target: {fileID: 8518961810895114759, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
       propertyPath: m_Name
       value: PalmTreeBackgroundSheet_0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518961810895114776, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
+      propertyPath: _frameRate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8518961810895114777, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
       propertyPath: m_RootOrder
@@ -1021,6 +1081,10 @@ PrefabInstance:
     - target: {fileID: 8518961810895114759, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
       propertyPath: m_Name
       value: PalmTreeBackgroundSheet_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518961810895114776, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
+      propertyPath: _frameRate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8518961810895114777, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
       propertyPath: m_RootOrder
@@ -3116,6 +3180,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6380276978758318662, guid: a3f9612616e16a54cbf7bc21ed1ff47d, type: 3}
+      propertyPath: _frameRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6380276978758318663, guid: a3f9612616e16a54cbf7bc21ed1ff47d, type: 3}
       propertyPath: m_Name
       value: PalmTreeBackgroundSheet_4 (1)
@@ -3233,6 +3301,10 @@ PrefabInstance:
     - target: {fileID: 6380276978758318656, guid: a3f9612616e16a54cbf7bc21ed1ff47d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6380276978758318662, guid: a3f9612616e16a54cbf7bc21ed1ff47d, type: 3}
+      propertyPath: _frameRate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6380276978758318663, guid: a3f9612616e16a54cbf7bc21ed1ff47d, type: 3}
       propertyPath: m_Name
