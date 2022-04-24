@@ -9,6 +9,9 @@ public class Hero : MonoBehaviour
     // величина с которой будем прыгать вверх
     [SerializeField] private float _jumpSpeed;
 
+    // величина с которой будем подбрасывать героя при прыгании на пиках
+    [SerializeField] private float _damageJumpSpeed;
+
     // Ground указываем для поверхностей от которых можно прыгать, на поверхности вешаем слой Ground
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckRadius;
@@ -31,7 +34,11 @@ public class Hero : MonoBehaviour
 
     private static readonly int IsGroundKey = Animator.StringToHash("is-ground");
     private static readonly int IsRunning = Animator.StringToHash("is-running");
+
     private static readonly int VerticalVelocity = Animator.StringToHash("vertical-velocity");
+
+    // урон
+    private static readonly int Hit = Animator.StringToHash("hit");
 
     public int coints;
 
@@ -192,5 +199,13 @@ public class Hero : MonoBehaviour
         //     _sprite.flipX = true;
         // }
         _sprite.flipX = _direction.x < 0 ? true : false;
+    }
+
+    // получение урона от пик, вызов анимации, подброс героя вверх
+    public void TakeDamage()
+    {
+        _animator.SetTrigger(Hit);
+        // изменим силу с которой он летит вверх
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
     }
 }
