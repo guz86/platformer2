@@ -8,7 +8,5 @@ public class DestroyObjectComponent : MonoBehaviour
     public void DestroyObject()
     {
         Destroy(_objectToDestroy);
-        _hero.coints++;
-        Debug.Log($"Монеток: {_hero.coints}");
     }
 }

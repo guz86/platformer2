@@ -40,7 +40,7 @@ public class Hero : MonoBehaviour
     // урон
     private static readonly int Hit = Animator.StringToHash("hit");
 
-    public int coints;
+    private int _coins;
 
     private void Awake()
     {
@@ -199,6 +199,13 @@ public class Hero : MonoBehaviour
         //     _sprite.flipX = true;
         // }
         _sprite.flipX = _direction.x < 0 ? true : false;
+    }
+
+    // добавление монеток
+    public void AddCoins(int coins)
+    {
+        _coins += coins;
+        Debug.Log($"Монеток: {_coins}");
     }
 
     // получение урона от пик, вызов анимации, подброс героя вверх
