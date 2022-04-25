@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7887529103247107446}
   - component: {fileID: 1190963861784580880}
   - component: {fileID: 3387422359850245398}
-  - component: {fileID: 4335040212658167094}
   m_Layer: 7
   m_Name: Helm
   m_TagString: Untagged
@@ -136,27 +135,15 @@ MonoBehaviour:
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4335040212658167094}
-        m_TargetAssemblyTypeName: ReloadLevelComponent, Assembly-CSharp
-        m_MethodName: Reload
-        m_Mode: 1
+      - m_Target: {fileID: 7887529103247107446}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: interact
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4335040212658167094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7573319441872631103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91807c104570fc64891d763be8fd42cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
