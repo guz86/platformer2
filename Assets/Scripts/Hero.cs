@@ -16,7 +16,14 @@ public class Hero : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckRadius;
     [SerializeField] private Vector3 _groundCheckPoisitionDelta;
+    // радиус действия для использования переключателя
+    [SerializeField] private float _interactiveRadius;
+    // маска на переключателе
+    [SerializeField] private LayerMask _interectiveLayer;
 
+    // массив объектов из 1 элемента, использование переключателя
+    private Collider2D[] _interactiveResult = new Collider2D[1];
+    
     // направление перемещения
     private Vector2 _direction;
 
@@ -215,4 +222,26 @@ public class Hero : MonoBehaviour
         // изменим силу с которой он летит вверх
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
     }
+    
+    // после нажатия пробела, проверяем пересечения героя с объектом(переключателем)
+    // если есть пересечение получим компонент InteractiveComponent объекта и вызовем метод Interact
+    public void Interact()
+    {
+        var size = Physics2D.OverlapCircleNonAlloc(
+            transform.position,
+            // радиус
+            _interactiveRadius,
+            // массив объектов из 1 элемента
+            _interactiveResult,
+            // маска
+            _interectiveLayer);
+        // размер результатов size, пройдемся по массиву
+        for (int i = 0; i < size; i++)
+        {
+            // из массива получим компонент объекта и вызывем метод из него
+            var interactable = _interactiveResult[i].GetComponent<InteractiveComponent>();
+            interactable.Interact();
+        }
+    }
+    
 }
