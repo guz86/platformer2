@@ -15,17 +15,24 @@ public class Hero : MonoBehaviour
     // Ground указываем для поверхностей от которых можно прыгать, на поверхности вешаем слой Ground
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundCheckRadius;
+
     [SerializeField] private Vector3 _groundCheckPoisitionDelta;
+
     // радиус действия для использования переключателя
     [SerializeField] private float _interactiveRadius;
+
     // маска на переключателе
     [SerializeField] private LayerMask _interectiveLayer;
+
     // для анимации пыли при беге
     [SerializeField] private SpawnComponent _footStepPosition;
 
+    // для партиклов при нанесении урона, разлетающиеся монетки
+    [SerializeField] private ParticleSystem _hitParticles;
+
     // массив объектов из 1 элемента, использование переключателя
     private Collider2D[] _interactiveResult = new Collider2D[1];
-    
+
     // направление перемещения
     private Vector2 _direction;
 
@@ -214,10 +221,10 @@ public class Hero : MonoBehaviour
             //transform.localScale = new Vector3(1, 1, 1);
             transform.localScale = Vector3.one;
         }
-         else if (_direction.x < 0)
-         {
-             transform.localScale = new Vector3(-1, 1, 1);
-         }
+        else if (_direction.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     // добавление монеток
@@ -233,14 +240,39 @@ public class Hero : MonoBehaviour
         _animator.SetTrigger(Hit);
         // изменим силу с которой он летит вверх
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
+
+        // ограничение вылетающих монет при причинении урона герою
+        if (_coins > 0 )
+        {
+            SpawnCoins();
+        }
+        
     }
-    
+
+    // разлетающиеся монетки от урона
+    private void SpawnCoins()
+    {
+        // считаем количество монет, либо 5 либо меньше, из того что есть у героя
+        var numCoinsToDispose = Mathf.Min(_coins, 5);
+        // убираем вылетающие монеты
+        _coins -= numCoinsToDispose;
+            // получаем текущую настройку для вылета партиколов
+            var burst = _hitParticles.emission.GetBurst(0);
+            // передаем ей количество койнов для вылета
+            burst.count = numCoinsToDispose;
+            // сохраним новое значение
+            _hitParticles.emission.SetBurst(0, burst);
+        
+        _hitParticles.gameObject.SetActive(true);
+
+        _hitParticles.Play();
+    }
+
     // после нажатия пробела, проверяем пересечения героя с объектом(переключателем)
     // если есть пересечение получим компонент InteractiveComponent объекта и вызовем метод Interact
     public void Interact()
     {
-        var size = Physics2D.OverlapCircleNonAlloc(
-            transform.position,
+        var size = Physics2D.OverlapCircleNonAlloc(transform.position,
             // радиус
             _interactiveRadius,
             // массив объектов из 1 элемента
@@ -255,7 +287,7 @@ public class Hero : MonoBehaviour
             interactable.Interact();
         }
     }
-    
+
     // для добавление анимации пыли в таймлайн анимации run на герое
     public void SpawnFootDust()
     {
