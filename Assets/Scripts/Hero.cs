@@ -20,6 +20,8 @@ public class Hero : MonoBehaviour
     [SerializeField] private float _interactiveRadius;
     // маска на переключателе
     [SerializeField] private LayerMask _interectiveLayer;
+    // для анимации пыли при беге
+    [SerializeField] private SpawnComponent _footStepPosition;
 
     // массив объектов из 1 элемента, использование переключателя
     private Collider2D[] _interactiveResult = new Collider2D[1];
@@ -37,7 +39,7 @@ public class Hero : MonoBehaviour
     private bool _allowDoubleJump;
 
     private Animator _animator;
-    private SpriteRenderer _sprite;
+    // было для разваорота героя private SpriteRenderer _sprite;
 
     private static readonly int IsGroundKey = Animator.StringToHash("is-ground");
     private static readonly int IsRunning = Animator.StringToHash("is-running");
@@ -54,7 +56,7 @@ public class Hero : MonoBehaviour
         // заберем физическое тело
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _sprite = GetComponent<SpriteRenderer>();
+        // было для разваорота героя _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -205,7 +207,17 @@ public class Hero : MonoBehaviour
         // {
         //     _sprite.flipX = true;
         // }
-        _sprite.flipX = _direction.x < 0 ? true : false;
+        //_sprite.flipX = _direction.x < 0 ? true : false;
+        // для анимации пыли нужно разворачивать всего героя
+        if (_direction.x > 0)
+        {
+            //transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = Vector3.one;
+        }
+         else if (_direction.x < 0)
+         {
+             transform.localScale = new Vector3(-1, 1, 1);
+         }
     }
 
     // добавление монеток
@@ -244,4 +256,9 @@ public class Hero : MonoBehaviour
         }
     }
     
+    // для добавление анимации пыли в таймлайн анимации run на герое
+    public void SpawnFootDust()
+    {
+        _footStepPosition.Spawn();
+    }
 }
