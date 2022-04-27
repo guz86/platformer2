@@ -47,6 +47,9 @@ public class Hero : MonoBehaviour
 
     private Animator _animator;
     // было для разваорота героя private SpriteRenderer _sprite;
+    
+    // для fix высокого прыжка
+    private bool _isJumping;
 
     private static readonly int IsGroundKey = Animator.StringToHash("is-ground");
     private static readonly int IsRunning = Animator.StringToHash("is-running");
@@ -133,18 +136,19 @@ public class Hero : MonoBehaviour
 
         //если стоим на земле, то можем сделать двойной прыжок
         if (_isGrounded) _allowDoubleJump = true;
-
+        _isJumping = false;
         // следим за тем нажали ли мы кнопку вверх, изменилась ли координата y
         bool isJumpingPressing = _direction.y > 0;
 
         if (isJumpingPressing)
         {
+            _isJumping = true;
             // рассчитаем скорость прыжка
             yVelocity = CalculateJumpVelocity(yVelocity);
         }
         //для высоты прыжка
         // если мы не прыгаем (на нажимаем), но летим вверх, то замедляемся
-        else if (_rigidbody.velocity.y > 0)
+        else if (_rigidbody.velocity.y > 0 && _isJumping)
         {
             yVelocity *= 0.5f;
             //_rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * 0.5f);
@@ -237,6 +241,7 @@ public class Hero : MonoBehaviour
     // получение урона от пик, вызов анимации, подброс героя вверх
     public void TakeDamage()
     {
+        _isJumping = false;
         _animator.SetTrigger(Hit);
         // изменим силу с которой он летит вверх
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);

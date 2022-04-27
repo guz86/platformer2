@@ -5674,7 +5674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   _jumpSpeed: 12
-  _damageJumpSpeed: 30
+  _damageJumpSpeed: 10
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
