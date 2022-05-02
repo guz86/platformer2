@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 1703715785522781299}
   - component: {fileID: 1703715785522781298}
   - component: {fileID: 1703715785522781301}
-  - component: {fileID: 1703715785522781300}
+  - component: {fileID: 7923852931094135037}
   m_Layer: 0
   m_Name: Coins_0
   m_TagString: Untagged
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 1703715785522781303}
   _hero: {fileID: 0}
---- !u!114 &1703715785522781300
+--- !u!114 &7923852931094135037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
