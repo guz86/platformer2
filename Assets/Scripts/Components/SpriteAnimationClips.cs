@@ -1,15 +1,15 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-// 102 строчка ошибка
 // обязательно
 [RequireComponent(typeof(SpriteRenderer))]
-public class SpriteAnimationNew : MonoBehaviour
+public class SpriteAnimationClips : MonoBehaviour
 {
     [SerializeField] private int _frameRate = 10;
-    
+
+    [SerializeField] private UnityEvent<string> _onComplete;
+
     // массив клипов например idle destroy
     [SerializeField] private AnimationClip[] _clips;
     
@@ -17,7 +17,7 @@ public class SpriteAnimationNew : MonoBehaviour
     private SpriteRenderer _renderer;
 
     // сколько раз в секунду менять анимацию, сколько секунд уходит на показ спрайта
-    private float _secondPerFrame;
+    private float _secPerFrame;
 
     // текущий индекс спрайта из массива
     //private int _currentSpriteIndex;
@@ -42,9 +42,9 @@ public class SpriteAnimationNew : MonoBehaviour
     {
         
         // сколько времени будет длится 1 кадр 
-        _secondPerFrame = 1f / _frameRate;
+        _secPerFrame = 1f / _frameRate;
         // текущее время + количество секунд на фрейм = когда следующий апдейт кадра
-        _nextFrameTime = Time.time + _secondPerFrame;
+        _nextFrameTime = Time.time + _secPerFrame;
         //_currentSpriteIndex = 0;
         StartAnimation();
     }
@@ -70,14 +70,13 @@ public class SpriteAnimationNew : MonoBehaviour
                 StartAnimation();
                 return;
             }
-
-            enabled = _isPlaying = false;
         }
+        enabled = _isPlaying = false;
     }
 
     public void StartAnimation()
     {
-        _nextFrameTime = Time.time + _secondPerFrame;
+        _nextFrameTime = Time.time + _secPerFrame;
         _isPlaying = true;
         _currentFrame = 0;
     }
@@ -99,8 +98,7 @@ public class SpriteAnimationNew : MonoBehaviour
             else
             {
                 clip.OnComplete?.Invoke();
-                // не понятно поечему не вызывается....
-                //_onComplete?.Invoke(clip.Name);
+                _onComplete?.Invoke(clip.Name);
                 enabled = _isPlaying = clip.AllowNextClip;
                 if (clip.AllowNextClip)
                 {
@@ -114,7 +112,7 @@ public class SpriteAnimationNew : MonoBehaviour
             // назначаем нужный нам кадр из массива
             _renderer.sprite = clip.Sprites[_currentFrame];
             // увеличиваем время на количество секунд на фрейм
-            _nextFrameTime += _secondPerFrame;
+            _nextFrameTime += _secPerFrame;
             // берем следующий спрайт
             _currentFrame++;
     }
