@@ -7,7 +7,6 @@ public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private UnityEvent _onDamage;
-
     [SerializeField] private UnityEvent _onDie;
 
     // вызывается из DamageComponent, в 1 случае списывает жизни, в 2 перезагрузка

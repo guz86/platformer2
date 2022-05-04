@@ -247,7 +247,7 @@ public class Hero : MonoBehaviour
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
 
         // ограничение вылетающих монет при причинении урона герою
-        if (_coins > 0 )
+        if (_coins > 0)
         {
             SpawnCoins();
         }
@@ -297,5 +297,11 @@ public class Hero : MonoBehaviour
     public void SpawnFootDust()
     {
         _footStepPosition.Spawn();
+    }
+    
+    // заберем партиклы от объекта для TeleportComponent
+    public ParticleSystem GetHitParticleSystem()
+    {
+        return _hitParticles;
     }
 }
