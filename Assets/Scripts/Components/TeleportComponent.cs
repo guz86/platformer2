@@ -13,8 +13,9 @@ public class TeleportComponent : MonoBehaviour
     // время передвижения
     [SerializeField] private float _moveTime = 1;
     
-    // для того чтобы получить доступ к партикл системе
+    // для того чтобы получить доступ к партикл системе для отключения
     private Hero _hero;
+    
     // для того чтобы получить доступ к партикл системе
     private void Start()
     {
@@ -28,10 +29,12 @@ public class TeleportComponent : MonoBehaviour
         StartCoroutine(AnimateTeleport(target));
     }
 
+    // специальный метод с интефейсом IEnumerator для использования постоянных прерываний
     private IEnumerator AnimateTeleport(GameObject target)
     {
-        
         var input = target.GetComponent<PlayerInput>();
+        
+        // получим спрайт для которого будем менять альфа
         var sprite = target.GetComponent<SpriteRenderer>();
         
         // отключаем управление у Hero до исчезновения, т.к. известно что реализация у нас через PlayerInput
@@ -60,21 +63,27 @@ public class TeleportComponent : MonoBehaviour
         SetLockInput(input, false);
     }
 
-
     // отдельный метод для появления/исчезновения через карутину
+    // destAlfa 1 - появление, 0 - исчезновение
     private IEnumerator SetAlfa(SpriteRenderer sprite, float destAlfa)
     {
+        // текущее время анимации
         var alfaTime = 0f;
+        // дефольтное значение
         var spriteAlfa = sprite.color.a;
         while (alfaTime < _alfaTime)
         {
             alfaTime += Time.deltaTime;
             var progress = alfaTime / _alfaTime;
+            // интерполируем(смещаем) от стартогового значения к текущему(целевому)
             var tmpAlfa = Mathf.Lerp(spriteAlfa, destAlfa, progress);
+            // возьмем цвет у спрайта
             var color = sprite.color;
+            // меняем значение альфа
             color.a = tmpAlfa;
+            // запишем новое значение в наш спрайт
             sprite.color = color;
-
+            // вызов пропустит кадр
             yield return null;
         }
     }
@@ -87,8 +96,9 @@ public class TeleportComponent : MonoBehaviour
         {
             moveTime += Time.deltaTime;
             var progress = moveTime / _moveTime;
+            // у объекта меняем позицию от текущей к целевой
             target.transform.position = Vector3.Lerp(target.transform.position, _destTransform.position, progress);
-
+            // вызов пропустит кадр
             yield return null;
         }
     }
