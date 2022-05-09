@@ -7,13 +7,24 @@ public class HealthComponent : MonoBehaviour
 {
     [SerializeField] private int _health;
     [SerializeField] private UnityEvent _onDamage;
+    [SerializeField] private UnityEvent _onHeal; // исцеление
     [SerializeField] private UnityEvent _onDie;
 
     // вызывается из DamageComponent, в 1 случае списывает жизни, в 2 перезагрузка
-    public void ApplyDamage(int damageValue)
+    public void ModifyHealth(int healthDelta)
     {
-        _health -= damageValue;
-        _onDamage?.Invoke();
+        _health += healthDelta;
+        // урон
+        if (healthDelta < 0)
+        {
+            _onDamage?.Invoke();
+        }
+        // лечение
+        if (healthDelta > 0)
+        {
+            _onHeal?.Invoke();
+        }
+        // смерть
         if (_health <= 0)
         {
             _onDie?.Invoke();

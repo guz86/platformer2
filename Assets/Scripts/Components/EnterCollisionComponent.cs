@@ -10,7 +10,7 @@ public class EnterCollisionComponent : MonoBehaviour
     [SerializeField] private string _tag;
 
     // Unity не может серриализовать дженерик классы с аргументом класса
-    [SerializeField] private EnterLevel _action;
+    [SerializeField] private EnterEvent _action;
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -19,11 +19,10 @@ public class EnterCollisionComponent : MonoBehaviour
             _action?.Invoke(other.gameObject);
         }
     }
-
-    [Serializable]
-    // создаем класс и наследуемся с аргументом класса GameObject в качестве типа,
-    // для вызова other.gameObject
-    public class EnterLevel : UnityEvent<GameObject>
-    {
-    }
+}
+[Serializable]
+// создаем класс и наследуемся с аргументом класса GameObject в качестве типа,
+// для вызова other.gameObject
+public class EnterEvent : UnityEvent<GameObject>
+{
 }

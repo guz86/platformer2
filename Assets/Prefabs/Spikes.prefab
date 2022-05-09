@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 331352052834875760}
   - component: {fileID: 331352052834875762}
   - component: {fileID: 4410584059289948747}
-  - component: {fileID: 2744873008391592127}
+  - component: {fileID: 3856045206111242582}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -127,9 +127,9 @@ MonoBehaviour:
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2744873008391592127}
-        m_TargetAssemblyTypeName: DamageComponent, Assembly-CSharp
-        m_MethodName: ApplyDamage
+      - m_Target: {fileID: 3856045206111242582}
+        m_TargetAssemblyTypeName: ModifyHealthComponent, Assembly-CSharp
+        m_MethodName: Apply
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2744873008391592127
+--- !u!114 &3856045206111242582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,4 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bba62bb26b9324ea6c51a3eb28ac2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
+  _hpDelta: -1
