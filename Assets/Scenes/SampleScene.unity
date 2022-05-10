@@ -5441,6 +5441,7 @@ Transform:
   m_Children:
   - {fileID: 1105335171}
   - {fileID: 952911063}
+  - {fileID: 1048471722}
   m_Father: {fileID: 0}
   m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5561,6 +5562,7 @@ MonoBehaviour:
     m_Bits: 128
   _footStepPosition: {fileID: 1105335172}
   _hitParticles: {fileID: 952911062}
+  _jumpPaticles: {fileID: 1048471723}
 --- !u!70 &361735194
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -11869,6 +11871,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 559c52f4c5d6f5f4cb5bdbe40cd67270, type: 3}
+--- !u!1 &1048471721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048471722}
+  - component: {fileID: 1048471723}
+  m_Layer: 0
+  m_Name: JumpSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1048471722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048471721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 361735190}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1048471723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048471721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a58112ace654b3a4a82d07c5258b42c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 1048471722}
+  _prefab: {fileID: 8401804446840108094, guid: 37ac1a14fe89674459a0168dffc331a6, type: 3}
 --- !u!114 &1071321613 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3856045206111242582, guid: ee0d2e6132c172f419bffa78d16b5e9e, type: 3}

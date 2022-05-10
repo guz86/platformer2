@@ -24,11 +24,17 @@ public class Hero : MonoBehaviour
     // маска на переключателе
     [SerializeField] private LayerMask _interectiveLayer;
 
+    
+    [Space] [Header("Particles")]
     // для анимации пыли при беге
     [SerializeField] private SpawnComponent _footStepPosition;
 
     // для партиклов при нанесении урона, разлетающиеся монетки
     [SerializeField] private ParticleSystem _hitParticles;
+    
+    // для партиклов при прыжке
+    [SerializeField] private SpawnComponent _jumpPaticles;
+    
 
     // массив объектов из 1 элемента, использование переключателя
     private Collider2D[] _interactiveResult = new Collider2D[1];
@@ -171,10 +177,14 @@ public class Hero : MonoBehaviour
         {
             // если не взлетаем то прибавим величину прыжка
             yVelocity += _jumpSpeed;
+            // анимация прыжка
+            _jumpPaticles.Spawn();
         }
         else if (_allowDoubleJump)
         {
             yVelocity = _jumpSpeed;
+            // анимация прыжка
+            _jumpPaticles.Spawn();
             // запретим прыгать 2й раз
             _allowDoubleJump = false;
         }

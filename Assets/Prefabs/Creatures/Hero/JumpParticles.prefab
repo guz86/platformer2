@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8401804446840108032}
   - component: {fileID: 8071618151879575830}
   m_Layer: 0
-  m_Name: FootSteps
+  m_Name: JumpParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,11 +99,12 @@ MonoBehaviour:
   _frameRate: 10
   _loop: 0
   _sprites:
-  - {fileID: 21300000, guid: 4b400628716178245b3f759dcdc8aeb9, type: 3}
-  - {fileID: 21300000, guid: 516d71a6b741e0943890475f5af84b41, type: 3}
-  - {fileID: 21300000, guid: cbb5ae2025a49f64baf36cc12c6875c2, type: 3}
-  - {fileID: 21300000, guid: 91c3627c9ffa2a440851341974a58e88, type: 3}
-  - {fileID: 21300000, guid: 555fc502746367842ba5b06f9d908e8e, type: 3}
+  - {fileID: 21300000, guid: 80c49882f3418d64e815fbb3686aede9, type: 3}
+  - {fileID: 21300000, guid: a33f626576e8b9f42ab0047916382a90, type: 3}
+  - {fileID: 21300000, guid: 58d600380bfd737498d84284f86c800a, type: 3}
+  - {fileID: 21300000, guid: f3c60deb1ad1c3a47897947dfd9ee44f, type: 3}
+  - {fileID: 21300000, guid: d9094f0afeb60e440858b2f7ceb8612d, type: 3}
+  - {fileID: 21300000, guid: 73ffd35698e8ffc42b15255fe1e98c5e, type: 3}
   _onComplete:
     m_PersistentCalls:
       m_Calls:
@@ -132,4 +133,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 8401804446840108094}
-  _hero: {fileID: 0}
