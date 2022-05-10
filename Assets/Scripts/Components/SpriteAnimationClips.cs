@@ -77,7 +77,7 @@ public class SpriteAnimationClips : MonoBehaviour
     public void StartAnimation()
     {
         _nextFrameTime = Time.time + _secPerFrame;
-        _isPlaying = true;
+        enabled = _isPlaying = true;
         _currentFrame = 0;
     }
     
@@ -97,9 +97,9 @@ public class SpriteAnimationClips : MonoBehaviour
             // иначе переходим на следующий стейт
             else
             {
+                enabled = _isPlaying = clip.AllowNextClip;
                 clip.OnComplete?.Invoke();
                 _onComplete?.Invoke(clip.Name);
-                enabled = _isPlaying = clip.AllowNextClip;
                 if (clip.AllowNextClip)
                 {
                     _currentClip = (int) Mathf.Repeat(_currentClip + 1, _clips.Length);

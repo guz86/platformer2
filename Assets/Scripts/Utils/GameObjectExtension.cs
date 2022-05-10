@@ -8,5 +8,6 @@ public static class GameObjectExtension
     {
         return layer == (layer | 1 << go.layer);
         //битовая маска                     побитовый сдвиг  маски
+        // если GameObject будет не в том слое 
     }
 }
