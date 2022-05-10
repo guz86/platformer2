@@ -23,6 +23,9 @@ public class Hero : MonoBehaviour
 
     // маска на переключателе
     [SerializeField] private LayerMask _interectiveLayer;
+    
+    // задаем скорость для проигрывания анимации приземления
+    [SerializeField] private float _slamDownVelocity;
 
     
     [Space] [Header("Particles")]
@@ -34,6 +37,9 @@ public class Hero : MonoBehaviour
     
     // для партиклов при прыжке
     [SerializeField] private SpawnComponent _jumpPaticles;
+    
+    // для партиклов при падении
+    [SerializeField] private SpawnComponent _slamDownParticle;
     
 
     // массив объектов из 1 элемента, использование переключателя
@@ -313,5 +319,22 @@ public class Hero : MonoBehaviour
     public ParticleSystem GetHitParticleSystem()
     {
         return _hitParticles;
+    }
+    
+    // для анимации приземления
+    // нам нужно понять что мы приземлились с определенной скоростью
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        // через метод расширения, если мы соприкоснулись с землей
+        if (other.gameObject.IsInLayer(_groundLayer))
+        {
+            var contract = other.contacts[0];
+            // скорость между 2 колладеров,
+            // если скорость больше определенного значения то анимируем падение
+            if (contract.relativeVelocity.y >= _slamDownVelocity)
+            {
+                _slamDownParticle.Spawn();
+            }
+        }
     }
 }
