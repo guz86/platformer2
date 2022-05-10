@@ -14,7 +14,7 @@ public class HealthComponent : MonoBehaviour
     public void ModifyHealth(int healthDelta)
     {
         _health += healthDelta;
-        // урон
+        // урон - аниматор, вылетающие монеты, сила вверх
         if (healthDelta < 0)
         {
             _onDamage?.Invoke();
@@ -24,7 +24,7 @@ public class HealthComponent : MonoBehaviour
         {
             _onHeal?.Invoke();
         }
-        // смерть
+        // смерть - перезагрузка уровня
         if (_health <= 0)
         {
             _onDie?.Invoke();

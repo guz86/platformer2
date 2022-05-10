@@ -5,7 +5,7 @@ public class ModifyHealthComponent : MonoBehaviour
 {
     [SerializeField] private int _hpDelta;
 
-    //публичный метод который нанесет damage
+    //публичный метод который изменит здоровье
     public void Apply(GameObject target)
     {
         // если на объекте есть компонент
