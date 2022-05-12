@@ -365,6 +365,11 @@ public class Hero : MonoBehaviour
     public void Attack()
     {
         _animator.SetTrigger(AttackKey);
+
+    }
+    
+    public void OnAttackKey()
+    { 
         // достаем наши объекты с которые атакуем
         var gos = _attackRange.GetObjectsInRange();
         // попробуем у них получить компонетнт здоровья
