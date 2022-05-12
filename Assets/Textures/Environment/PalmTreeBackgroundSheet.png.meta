@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -388,6 +389,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      PalmTreeBackgroundSheet_1: 262518517033693272
+      PalmTreeBackgroundSheet_7: 7744047822205964645
+      PalmTreeBackgroundSheet_2: 762285979657935423
+      PalmTreeBackgroundSheet_11: 1278475588773109743
+      PalmTreeBackgroundSheet_9: 3531074664856275464
+      PalmTreeBackgroundSheet_6: 1981876992937066421
+      PalmTreeBackgroundSheet_0: 8683632313750085214
+      PalmTreeBackgroundSheet_8: -6024505487453159095
+      PalmTreeBackgroundSheet_5: -6487789065682943626
+      PalmTreeBackgroundSheet_4: -2645899244835350471
+      PalmTreeBackgroundSheet_3: 1400697303485121525
+      PalmTreeBackgroundSheet_10: 802857254159732353
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

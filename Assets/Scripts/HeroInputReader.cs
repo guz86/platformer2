@@ -20,6 +20,15 @@ public class HeroInputReader : MonoBehaviour
             _hero.Interact();
         }
        
+    }    
+    // нажали на E, и вызвали атаку из героя
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.canceled)
+        {
+            _hero.Attack();
+        }
+       
     }
 }
  

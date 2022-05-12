@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
@@ -23,24 +24,32 @@ public class Hero : MonoBehaviour
 
     // маска на переключателе
     [SerializeField] private LayerMask _interectiveLayer;
-    
+
     // задаем скорость для проигрывания анимации приземления
     [SerializeField] private float _slamDownVelocity;
 
-    
-    [Space] [Header("Particles")]
+
+    [Space]
+    [Header("Particles")]
     // для анимации пыли при беге
-    [SerializeField] private SpawnComponent _footStepPosition;
+    [SerializeField]
+    private SpawnComponent _footStepPosition;
 
     // для партиклов при нанесении урона, разлетающиеся монетки
     [SerializeField] private ParticleSystem _hitParticles;
-    
+
     // для партиклов при прыжке
     [SerializeField] private SpawnComponent _jumpPaticles;
-    
+
     // для партиклов при падении
     [SerializeField] private SpawnComponent _slamDownParticle;
-    
+
+    // переменная для нашей атаке, вызов проверки объектов для атаки GetObjectsInRange
+    // добавить на герое наш объект на мече
+    [SerializeField] private CheckCircleOverlap _attackRange;
+
+    // урон нашему объекту, которые попал в поле действия меча и имеет ХП
+    [SerializeField] private int _damage;
 
     // массив объектов из 1 элемента, использование переключателя
     private Collider2D[] _interactiveResult = new Collider2D[1];
@@ -59,7 +68,7 @@ public class Hero : MonoBehaviour
 
     private Animator _animator;
     // было для разваорота героя private SpriteRenderer _sprite;
-    
+
     // для fix высокого прыжка
     private bool _isJumping;
 
@@ -70,6 +79,9 @@ public class Hero : MonoBehaviour
 
     // урон
     private static readonly int Hit = Animator.StringToHash("hit");
+
+    // анимация атаки оружием
+    private static readonly int AttackKey = Animator.StringToHash("attack");
 
     private int _coins;
 
@@ -215,13 +227,26 @@ public class Hero : MonoBehaviour
         return hit.collider != null;
     }
 
+    // при компиляции на другие платформы - чтобы код не вырезался, Handles нет в других сборках
+#if UNITY_EDITOR
     //отслеживание пересечения с землей
     private void OnDrawGizmos()
     {
         //Debug.DrawRay(transform.position,Vector3.down, isGrounded() ? Color.green : Color.red);
-        Gizmos.color = _isGrounded ? Color.green : Color.red;
-        Gizmos.DrawSphere(transform.position + _groundCheckPoisitionDelta, _groundCheckRadius);
+        // через Gizmos
+        //Gizmos.color = _isGrounded ? Color.green : Color.red;
+        //Gizmos.DrawSphere(transform.position + _groundCheckPoisitionDelta, _groundCheckRadius);
+
+
+        // другой вариант
+        Handles.color = _isGrounded ? HandlesUtils.TransparentGreen : HandlesUtils.TransparentRed;
+        // диск в центом в transform.position, направление Vector3.forward, 
+        Handles.DrawSolidDisc(transform.position + _groundCheckPoisitionDelta,
+            Vector3.forward,
+            _groundCheckRadius);
     }
+#endif
+
 
     // разворот спрайта
     private void UpdateSpriteDirection()
@@ -267,7 +292,6 @@ public class Hero : MonoBehaviour
         {
             SpawnCoins();
         }
-        
     }
 
     // разлетающиеся монетки от урона
@@ -277,13 +301,13 @@ public class Hero : MonoBehaviour
         var numCoinsToDispose = Mathf.Min(_coins, 5);
         // убираем вылетающие монеты
         _coins -= numCoinsToDispose;
-            // получаем текущую настройку для вылета партиколов
-            var burst = _hitParticles.emission.GetBurst(0);
-            // передаем ей количество койнов для вылета
-            burst.count = numCoinsToDispose;
-            // сохраним новое значение
-            _hitParticles.emission.SetBurst(0, burst);
-        
+        // получаем текущую настройку для вылета партиколов
+        var burst = _hitParticles.emission.GetBurst(0);
+        // передаем ей количество койнов для вылета
+        burst.count = numCoinsToDispose;
+        // сохраним новое значение
+        _hitParticles.emission.SetBurst(0, burst);
+
         _hitParticles.gameObject.SetActive(true);
 
         _hitParticles.Play();
@@ -314,13 +338,13 @@ public class Hero : MonoBehaviour
     {
         _footStepPosition.Spawn();
     }
-    
+
     // заберем партиклы от объекта для TeleportComponent
     public ParticleSystem GetHitParticleSystem()
     {
         return _hitParticles;
     }
-    
+
     // для анимации приземления
     // нам нужно понять что мы приземлились с определенной скоростью
     private void OnCollisionEnter2D(Collision2D other)
@@ -334,6 +358,23 @@ public class Hero : MonoBehaviour
             if (contract.relativeVelocity.y >= _slamDownVelocity)
             {
                 _slamDownParticle.Spawn();
+            }
+        }
+    }
+
+    public void Attack()
+    {
+        _animator.SetTrigger(AttackKey);
+        // достаем наши объекты с которые атакуем
+        var gos = _attackRange.GetObjectsInRange();
+        // попробуем у них получить компонетнт здоровья
+        foreach (var go in gos)
+        {
+            var hp = go.GetComponent<HealthComponent>();
+            if (hp != null)
+            {
+                // если есть здоровье отнимаем значение урона от оружия
+                hp.ModifyHealth(-_damage);
             }
         }
     }
