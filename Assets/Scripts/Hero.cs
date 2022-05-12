@@ -1,5 +1,6 @@
 using System;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Hero : MonoBehaviour
@@ -50,6 +51,10 @@ public class Hero : MonoBehaviour
 
     // урон нашему объекту, которые попал в поле действия меча и имеет ХП
     [SerializeField] private int _damage;
+    
+    // в качестве параметров указать соотвествующие аниматоры
+    [SerializeField] private AnimatorController _armed;
+    [SerializeField] private AnimatorController _disarmed;
 
     // массив объектов из 1 элемента, использование переключателя
     private Collider2D[] _interactiveResult = new Collider2D[1];
@@ -84,6 +89,9 @@ public class Hero : MonoBehaviour
     private static readonly int AttackKey = Animator.StringToHash("attack");
 
     private int _coins;
+    
+    // для того чтобы герой смог поднимать оружие
+    private bool _isArmed;
 
     private void Awake()
     {
@@ -364,6 +372,12 @@ public class Hero : MonoBehaviour
 
     public void Attack()
     {
+        // если не вооружен пропустить
+        if (!_isArmed)
+        {
+            return;
+        }
+        
         _animator.SetTrigger(AttackKey);
 
     }
@@ -382,5 +396,12 @@ public class Hero : MonoBehaviour
                 hp.ModifyHealth(-_damage);
             }
         }
+    }
+
+    public void ArmHero()
+    {
+        // вооружаем героя
+        _isArmed = true;
+        _animator.runtimeAnimatorController = _armed;
     }
 }
