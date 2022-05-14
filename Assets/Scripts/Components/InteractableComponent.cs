@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InteractiveComponent : MonoBehaviour
+public class InteractableComponent : MonoBehaviour
 {
     // действие в случае вызова метода из компонента
     [SerializeField] private UnityEvent _action;

@@ -322,7 +322,7 @@ public class Hero : MonoBehaviour
     }
 
     // после нажатия пробела, проверяем пересечения героя с объектом(переключателем)
-    // если есть пересечение получим компонент InteractiveComponent объекта и вызовем метод Interact
+    // если есть пересечение получим компонент InteractableComponent объекта и вызовем метод Interact
     public void Interact()
     {
         var size = Physics2D.OverlapCircleNonAlloc(transform.position,
@@ -336,7 +336,7 @@ public class Hero : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             // из массива получим компонент объекта и вызывем метод из него
-            var interactable = _interactiveResult[i].GetComponent<InteractiveComponent>();
+            var interactable = _interactiveResult[i].GetComponent<InteractableComponent>();
             interactable.Interact();
         }
     }
