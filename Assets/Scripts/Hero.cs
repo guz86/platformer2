@@ -88,10 +88,13 @@ public class Hero : MonoBehaviour
     // анимация атаки оружием
     private static readonly int AttackKey = Animator.StringToHash("attack");
 
-    private int _coins;
+    //private int _coins;
     
     // для того чтобы герой смог поднимать оружие
-    private bool _isArmed;
+    //private bool _isArmed;
+    
+    // для сохранения данных в сессии
+    private GameSession _session;
 
     private void Awake()
     {
@@ -99,6 +102,26 @@ public class Hero : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         // было для разваорота героя _sprite = GetComponent<SpriteRenderer>();
+    } 
+
+    // для сохранения данных в сессии
+    private void Start()
+    {
+        // берем данные с текущей сессии, после очистки в class GameSession в Awake 
+        _session = FindObjectOfType<GameSession>();
+        // обновляем состояние с оружием, вооружаем
+        UpdateHeroWeapon();
+        // инициализация здоровья на герое
+        var health = GetComponent<HealthComponent>();
+        // метод из HealthComponent в него передаем состояние hp в начале
+        health.SetHealth(_session.Data.Hp);
+    }
+    
+    // для обновления здоровья на объекте в _OnChange в HealthComponent
+    // добавим этот метод OnHealthChange
+    public void OnHealthChange(int currentHealth)
+    {
+        _session.Data.Hp = currentHealth;
     }
 
     private void Update()
@@ -283,8 +306,8 @@ public class Hero : MonoBehaviour
     // добавление монеток
     public void AddCoins(int coins)
     {
-        _coins += coins;
-        Debug.Log($"Монеток: {_coins}");
+        _session.Data.Coins += coins;
+        Debug.Log($"Монеток: {_session.Data.Coins}");
     }
 
     // получение урона от пик, вызов анимации, подброс героя вверх
@@ -296,7 +319,7 @@ public class Hero : MonoBehaviour
         _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _damageJumpSpeed);
 
         // ограничение вылетающих монет при причинении урона герою
-        if (_coins > 0)
+        if (_session.Data.Coins > 0)
         {
             SpawnCoins();
         }
@@ -306,9 +329,9 @@ public class Hero : MonoBehaviour
     private void SpawnCoins()
     {
         // считаем количество монет, либо 5 либо меньше, из того что есть у героя
-        var numCoinsToDispose = Mathf.Min(_coins, 5);
+        var numCoinsToDispose = Mathf.Min(_session.Data.Coins, 5);
         // убираем вылетающие монеты
-        _coins -= numCoinsToDispose;
+        _session.Data.Coins -= numCoinsToDispose;
         // получаем текущую настройку для вылета партиколов
         var burst = _hitParticles.emission.GetBurst(0);
         // передаем ей количество койнов для вылета
@@ -373,7 +396,7 @@ public class Hero : MonoBehaviour
     public void Attack()
     {
         // если не вооружен пропустить
-        if (!_isArmed)
+        if (!_session.Data.IsArmed)
         {
             return;
         }
@@ -401,7 +424,25 @@ public class Hero : MonoBehaviour
     public void ArmHero()
     {
         // вооружаем героя
-        _isArmed = true;
-        _animator.runtimeAnimatorController = _armed;
+        _session.Data.IsArmed = true;
+        UpdateHeroWeapon();
     }
+    
+    // вооружаем
+    // обновим данные героя на старте для оружия
+    private void UpdateHeroWeapon()
+    {
+        // если вооружен/невооружен в сессии, то анимация
+        if (_session.Data.IsArmed)
+        {
+            _animator.runtimeAnimatorController = _armed;
+        }
+        else
+        {
+            _animator.runtimeAnimatorController = _disarmed;
+        }
+        
+    }
+ 
+    
 }

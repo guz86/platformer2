@@ -7,6 +7,7 @@ public class ExitLevelComponent : MonoBehaviour
 
     public void Exit()
     {
+        // загружаем новую сцену
         SceneManager.LoadScene(_sceneName);
     }
 }
