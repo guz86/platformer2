@@ -38,7 +38,7 @@ public class HealthComponent : MonoBehaviour
         }
     }
     
-    // 
+    
     [Serializable]
     public class HealthChangeEvent: UnityEvent<int>{}
 
@@ -48,4 +48,14 @@ public class HealthComponent : MonoBehaviour
     {
         _health = health;
     }
+    
+    // для изменения хп во время выполнения вызывается через 
+#if UNITY_EDITOR
+    [ContextMenu("Update Health")]
+    private void UpdateHealth()
+    {
+        _OnChange?.Invoke(_health);
+    }
+#endif
+    
 }
