@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -51,10 +50,15 @@ public class Hero : MonoBehaviour
 
     // урон нашему объекту, которые попал в поле действия меча и имеет ХП
     [SerializeField] private int _damage;
-    
+
     // в качестве параметров указать соотвествующие аниматоры
     [SerializeField] private AnimatorController _armed;
     [SerializeField] private AnimatorController _disarmed;
+
+    // для механики цепляния к стенам
+    [SerializeField] private LayerCheck _wallCheck;
+    private bool _isOnWall;
+    private float _defaultGravityScale;
 
     // массив объектов из 1 элемента, использование переключателя
     private Collider2D[] _interactiveResult = new Collider2D[1];
@@ -89,10 +93,10 @@ public class Hero : MonoBehaviour
     private static readonly int AttackKey = Animator.StringToHash("attack");
 
     //private int _coins;
-    
+
     // для того чтобы герой смог поднимать оружие
     //private bool _isArmed;
-    
+
     // для сохранения данных в сессии
     private GameSession _session;
 
@@ -102,7 +106,10 @@ public class Hero : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         // было для разваорота героя _sprite = GetComponent<SpriteRenderer>();
-    } 
+
+        // для цепляния к стенам
+        _defaultGravityScale = _rigidbody.gravityScale;
+    }
 
     // для сохранения данных в сессии
     private void Start()
@@ -116,7 +123,7 @@ public class Hero : MonoBehaviour
         // метод из HealthComponent в него передаем состояние hp в начале
         health.SetHealth(_session.Data.Hp);
     }
-    
+
     // для обновления здоровья на объекте в _OnChange в HealthComponent
     // добавим этот метод OnHealthChange
     public void OnHealthChange(int currentHealth)
@@ -128,6 +135,19 @@ public class Hero : MonoBehaviour
     {
         // стоим ли на земле? // 
         _isGrounded = IsGrounded();
+
+        //для цепляния к стенам
+        // если соприкосается и еще давит на стену, то без гравитации и вешаем bool 
+        if (_wallCheck.isTouchingLayer && _direction.x == transform.localScale.x)
+        {
+            _isOnWall = true;
+            _rigidbody.gravityScale = 0;
+        }
+        else
+        {
+            _isOnWall = false;
+            _rigidbody.gravityScale = _defaultGravityScale;
+        }
     }
 
     // для физического перемещения вычисления в FixedUpdate
@@ -200,6 +220,12 @@ public class Hero : MonoBehaviour
             _isJumping = true;
             // рассчитаем скорость прыжка
             yVelocity = CalculateJumpVelocity(yVelocity);
+        }
+        //для цепляния к стенам
+        else if (_isOnWall)
+        {
+            yVelocity = 0;
+            _allowDoubleJump = true;
         }
         //для высоты прыжка
         // если мы не прыгаем (на нажимаем), но летим вверх, то замедляемся
@@ -400,13 +426,12 @@ public class Hero : MonoBehaviour
         {
             return;
         }
-        
-        _animator.SetTrigger(AttackKey);
 
+        _animator.SetTrigger(AttackKey);
     }
-    
+
     public void OnAttackKey()
-    { 
+    {
         // достаем наши объекты с которые атакуем
         var gos = _attackRange.GetObjectsInRange();
         // попробуем у них получить компонетнт здоровья
@@ -427,7 +452,7 @@ public class Hero : MonoBehaviour
         _session.Data.IsArmed = true;
         UpdateHeroWeapon();
     }
-    
+
     // вооружаем
     // обновим данные героя на старте для оружия
     private void UpdateHeroWeapon()
@@ -441,8 +466,5 @@ public class Hero : MonoBehaviour
         {
             _animator.runtimeAnimatorController = _disarmed;
         }
-        
     }
- 
-    
 }
