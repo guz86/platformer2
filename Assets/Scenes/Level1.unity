@@ -13222,7 +13222,11 @@ PrefabInstance:
     - target: {fileID: 5079840117915962874, guid: cd558da7eb9fa144d831ec711f866513, type: 3}
       propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 361735193}
+      objectReference: {fileID: 1848748191}
+    - target: {fileID: 5079840117915962874, guid: cd558da7eb9fa144d831ec711f866513, type: 3}
+      propertyPath: _action.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnSwordParticles
+      objectReference: {fileID: 0}
     - target: {fileID: 5079840117915962877, guid: cd558da7eb9fa144d831ec711f866513, type: 3}
       propertyPath: m_Name
       value: Sword Idle 01 (1)
@@ -13909,6 +13913,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1848748191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6504211906885593148, guid: cd558da7eb9fa144d831ec711f866513, type: 3}
+  m_PrefabInstance: {fileID: 1709839521}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc0d2e33a4e90e4d816abeef167f6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1892129073 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3856045206111242582, guid: ee0d2e6132c172f419bffa78d16b5e9e, type: 3}

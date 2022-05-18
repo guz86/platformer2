@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5079840117915962874}
   - component: {fileID: 5079840117915962871}
   - component: {fileID: 5079840117915962868}
+  - component: {fileID: 6504211906885593148}
   m_Layer: 0
   m_Name: Sword Idle 01
   m_TagString: Untagged
@@ -153,8 +154,8 @@ MonoBehaviour:
   _action:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 58060003358763773, guid: e4422a270c445c347985237362f63887, type: 3}
-        m_TargetAssemblyTypeName: Hero, Assembly-CSharp
+      - m_Target: {fileID: 6504211906885593148}
+        m_TargetAssemblyTypeName: SwordParticleComponent, Assembly-CSharp
         m_MethodName: SpawnSwordParticles
         m_Mode: 1
         m_Arguments:
@@ -214,3 +215,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _objectToDestroy: {fileID: 5079840117915962877}
+--- !u!114 &6504211906885593148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079840117915962877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cc0d2e33a4e90e4d816abeef167f6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swordParticles: {fileID: 5209723163479739392, guid: 51b03bcae53bc944583ea6b46d4fbeba, type: 3}

@@ -60,9 +60,6 @@ public class Hero : MonoBehaviour
     private bool _isOnWall;
     private float _defaultGravityScale;
     
-    // для анимации подбора меча
-    [SerializeField] private ParticleSystem _swordParticles;
-
     // массив объектов из 1 элемента, использование переключателя
     private Collider2D[] _interactiveResult = new Collider2D[1];
 
@@ -469,11 +466,5 @@ public class Hero : MonoBehaviour
         {
             _animator.runtimeAnimatorController = _disarmed;
         }
-    }
-    
-    // для анимации подъема меча
-    public void SpawnSwordParticles()
-    {
-        Instantiate(_swordParticles, transform.position, Quaternion.identity);
     }
 }
