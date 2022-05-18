@@ -2075,27 +2075,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &658232659 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4111319214208666079, guid: d42e0f95bcb9bb34693f1c4ea0faf777, type: 3}
-  m_PrefabInstance: {fileID: 1055714525}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &658232668
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658232659}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.012466431, y: -0.012465954}
-  m_Size: {x: 0.69781303, y: 0.75300384}
-  m_Direction: 0
 --- !u!1001 &928339842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2204,16 +2183,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4111319214208666078, guid: d42e0f95bcb9bb34693f1c4ea0faf777, type: 3}
-      propertyPath: _health
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4111319214208666079, guid: d42e0f95bcb9bb34693f1c4ea0faf777, type: 3}
       propertyPath: m_Name
       value: DestructableBarrel
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4111319214208666021, guid: d42e0f95bcb9bb34693f1c4ea0faf777, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d42e0f95bcb9bb34693f1c4ea0faf777, type: 3}
 --- !u!1 &1113643031
 GameObject:

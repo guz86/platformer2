@@ -16967,6 +16967,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Helm
       objectReference: {fileID: 0}
+    - target: {fileID: 7573319441872631103, guid: 383a63210e7814840b608fe1c86ba8d0, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 383a63210e7814840b608fe1c86ba8d0, type: 3}
 --- !u!1001 &7594297842578947424
