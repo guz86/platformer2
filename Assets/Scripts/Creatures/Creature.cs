@@ -17,7 +17,7 @@ public class Creature : MonoBehaviour
     [SerializeField] private float _damageVelocity;
     
     // урон нашему объекту, которые попал в поле действия меча и имеет ХП
-    [SerializeField] private int _damage;
+    //[SerializeField] private int _damage;
     
     
     [Header("Checkers")]
