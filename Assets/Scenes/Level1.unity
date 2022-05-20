@@ -13181,11 +13181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5079840117915962870, guid: cd558da7eb9fa144d831ec711f866513, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.99
+      value: 11.87
       objectReference: {fileID: 0}
     - target: {fileID: 5079840117915962870, guid: cd558da7eb9fa144d831ec711f866513, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.46
+      value: 2.66
       objectReference: {fileID: 0}
     - target: {fileID: 5079840117915962870, guid: cd558da7eb9fa144d831ec711f866513, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16387,10 +16387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 58060003002059312, guid: e4422a270c445c347985237362f63887, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 58060003358763760, guid: e4422a270c445c347985237362f63887, type: 3}
       propertyPath: m_Name
       value: Hero_0
@@ -16443,14 +16439,6 @@ PrefabInstance:
       propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1665712550}
-    - target: {fileID: 58060003358763773, guid: e4422a270c445c347985237362f63887, type: 3}
-      propertyPath: _swordParticles
-      value: 
-      objectReference: {fileID: 5209723163479739392, guid: 51b03bcae53bc944583ea6b46d4fbeba, type: 3}
-    - target: {fileID: 102751600224121907, guid: e4422a270c445c347985237362f63887, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4422a270c445c347985237362f63887, type: 3}
 --- !u!1001 &331352052112233244
