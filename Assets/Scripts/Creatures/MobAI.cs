@@ -47,6 +47,7 @@ namespace Creatures
 
         // в Vision в EnterTriggerComp по таг Player мы передадим этот метод
         // от Sharky для реагирования
+        // патрулируем пока не увидели
         public void OnHeroOnVision(GameObject go)
         {
             // если умерли, то выходим
@@ -57,7 +58,7 @@ namespace Creatures
             
             // увидели героя
             _target = go;
-            // идем к нему
+            // идем к нему, но сначала агримся
             StartState(AgroToHero());
 
         }
@@ -95,6 +96,9 @@ namespace Creatures
             yield return new WaitForSeconds(_missHeroCooldown);
             // сбрасываем направление движения если потеряли 
             _creature.SetDirection(Vector2.zero);
+            
+            // поставим патрулирование
+            StartState(_patrol.DoPatrol());
         }
 
         private IEnumerator Attack()
@@ -130,6 +134,7 @@ namespace Creatures
         // OnDie() вызовем его через HealthComponent
         public void OnDie()
         {
+            // в аниматоре отдельная анимация die
             _isDead = true;
             _animator.SetBool(IsDeadKey,true);
             //останавливаем карутины
@@ -145,7 +150,8 @@ namespace Creatures
         // моб должен делать только одну вещь за раз
         private void StartState(IEnumerator coroutine)
         {
-            // сбрасываем направление движения при любом новом состоянии
+            // сбрасываем направление движения при любом новом состоянии,
+            // например чтобы не двигался после смерти
             _creature.SetDirection(Vector2.zero);
             
             // если текущая запущена, то останавливаем
