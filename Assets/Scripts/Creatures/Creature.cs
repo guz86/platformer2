@@ -140,7 +140,8 @@ public class Creature : MonoBehaviour
         // на земле?
         Animator.SetBool(IsGroundKey, IsGrounded);
 
-        UpdateSpriteDirection();
+        //UpdateSpriteDirection();
+        UpdateSpriteDirection(Direction);
     }
     
     
@@ -220,7 +221,8 @@ public class Creature : MonoBehaviour
     
     
     // разворот спрайта
-    private void UpdateSpriteDirection()
+    //private void UpdateSpriteDirection() открываем для того чтобы мобы могли поворачиваться в MobAI
+    public void UpdateSpriteDirection(Vector2 direction)
     {
         // if (_direction.x > 0)
         // {

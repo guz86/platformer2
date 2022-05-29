@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Interactable
+  - Empty
   layers:
   - Default
   - TransparentFX
@@ -43,6 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Tilemap
+    uniqueID: 1301862739
+    locked: 0
   - name: Level
     uniqueID: 2351916081
+    locked: 0
+  - name: Props
+    uniqueID: 2696915457
+    locked: 0
+  - name: Creatures
+    uniqueID: 3305838531
     locked: 0

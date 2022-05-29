@@ -16,6 +16,9 @@ public class HealthComponent : MonoBehaviour
     // вызывается из DamageComponent, в 1 случае списывает жизни, в 2 перезагрузка
     public void ModifyHealth(int healthDelta)
     {
+        //на случай - нельзя бить моба (бочку) после смерти
+        if (_health <= 0) return;
+        
         _health += healthDelta;
         // если мы изменили здоровье, мы вызываем метод для передачи текущего уровня через OnHealthChange
         _OnChange?.Invoke(_health);

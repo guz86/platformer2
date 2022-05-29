@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
+using Utils;
 
 public class Hero : Creature
 {
@@ -23,6 +24,9 @@ public class Hero : Creature
     // задаем скорость для проигрывания анимации приземления
     [SerializeField] private float _slamDownVelocity;
 
+    // для кулдауна кидания мечей
+    [SerializeField] private Cooldown _throwCooldown;
+
     [Space]
     [Header("Particles")]
     // чтобы не вызывать каждый компонент по отдельности выделим SpawnListComponent
@@ -31,7 +35,10 @@ public class Hero : Creature
 
     // для партиклов при нанесении урона, разлетающиеся монетки
     [SerializeField] private ParticleSystem _hitParticles;
-
+    
+    //триггер для анимации бросания меча
+    private static readonly int ThrowKey = Animator.StringToHash("throw");
+    
     // для партиклов при прыжке перенесли в базовый SpawnListComponent
     //[SerializeField] private SpawnComponent _jumpPaticles;
 
@@ -313,6 +320,23 @@ public class Hero : Creature
         else
         {
             Animator.runtimeAnimatorController = _disarmed;
+        }
+    }
+
+    public void OnDoThrow()
+    {
+        // в SpawnListComponent добавляем объект TrowSwordSpamPosition с анимацией летящего меча
+        // подвяжем вылет 
+        Particles.Spawn("Throw");
+    }
+    
+    public void Throw()
+    {
+        // если кулдаун прошел, то мы стартуем анимацию и сбрасываем время кулдауна
+        if (_throwCooldown.IsReady)
+        {
+            Animator.SetTrigger(ThrowKey);
+            _throwCooldown.Reset();
         }
     }
 }

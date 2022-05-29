@@ -34,6 +34,8 @@ public class SpriteAnimationClips : MonoBehaviour
 
     private void Start()
     {
+        // сколько времени будет длится 1 кадр 
+        _secPerFrame = 1f / _frameRate;
         _renderer = GetComponent<SpriteRenderer>();
     }
 
@@ -41,11 +43,13 @@ public class SpriteAnimationClips : MonoBehaviour
     private void OnEnable()
     {
         
-        // сколько времени будет длится 1 кадр 
-        _secPerFrame = 1f / _frameRate;
         // текущее время + количество секунд на фрейм = когда следующий апдейт кадра
-        _nextFrameTime = Time.time + _secPerFrame;
+        //_nextFrameTime = Time.time + _secPerFrame;
+        
+        // чтобы сразу менялся кадр, выставим текущее время
+        _nextFrameTime = Time.time;
         //_currentSpriteIndex = 0;
+        // вынесен из старта
         StartAnimation();
     }
 
@@ -76,7 +80,9 @@ public class SpriteAnimationClips : MonoBehaviour
 
     public void StartAnimation()
     {
-        _nextFrameTime = Time.time + _secPerFrame;
+        //_nextFrameTime = Time.time + _secPerFrame;
+        // чтобы сразу менялся кадр, выставим текущее время
+        _nextFrameTime = Time.time;
         enabled = _isPlaying = true;
         _currentFrame = 0;
     }

@@ -65,12 +65,25 @@ namespace Creatures
 
         private IEnumerator AgroToHero()
         {
+            // нужно поворачиваться к герою
+            LookAtHero();
+            
             // Exclamation добавим в spawners на sharky
             _particles.Spawn("Exclamation");
             yield return new WaitForSeconds(_alarmDelay);
             // идем к герою
             StartState(GoToHero());
             
+        }
+
+        private void LookAtHero()
+        {
+            // получаем направление и задаем позицию для моба
+            var direction = GetDirectionToTarget();
+            // остановим
+            _creature.SetDirection(Vector2.zero);
+            
+            _creature.UpdateSpriteDirection(direction);
         }
 
         private IEnumerator GoToHero()
@@ -91,11 +104,12 @@ namespace Creatures
                 yield return null;
             }
             
+            // сбрасываем направление движения если потеряли 
+            _creature.SetDirection(Vector2.zero);
+            
             // если потеряли героя из виду
             _particles.Spawn("MissHero");
             yield return new WaitForSeconds(_missHeroCooldown);
-            // сбрасываем направление движения если потеряли 
-            _creature.SetDirection(Vector2.zero);
             
             // поставим патрулирование
             StartState(_patrol.DoPatrol());
@@ -117,13 +131,25 @@ namespace Creatures
         private void SetDirectionToTarget()
         {
             // двигаемся к герою выбираем направление движения(вектор направления)
-            var direction = _target.transform.position - transform.position;
+            //var direction = _target.transform.position - transform.position;
+            var direction = GetDirectionToTarget();
             // движемся только по горизонтали
-            direction.y = 0;
+            //direction.y = 0;
             //_creature.SetDirection(direction);
             // чтобы не было перепадов по скорости normalized
             _creature.SetDirection(direction.normalized);
         }
+        
+        private Vector2 GetDirectionToTarget()
+        {
+            // получаем направление для поворота к герою
+            // двигаемся к герою выбираем направление движения(вектор направления)
+            var direction = _target.transform.position - transform.position;
+            // движемся только по горизонтали
+            direction.y = 0;
+            return direction.normalized;
+        }
+        
 
         // private IEnumerator Patrolling()
         // {
@@ -137,6 +163,8 @@ namespace Creatures
             // в аниматоре отдельная анимация die
             _isDead = true;
             _animator.SetBool(IsDeadKey,true);
+            // например чтобы не двигался после смерти
+            _creature.SetDirection(Vector2.zero);
             //останавливаем карутины
             if (_current != null)
             {
@@ -150,8 +178,7 @@ namespace Creatures
         // моб должен делать только одну вещь за раз
         private void StartState(IEnumerator coroutine)
         {
-            // сбрасываем направление движения при любом новом состоянии,
-            // например чтобы не двигался после смерти
+            // сбрасываем направление движения при любом новом состоянии
             _creature.SetDirection(Vector2.zero);
             
             // если текущая запущена, то останавливаем
