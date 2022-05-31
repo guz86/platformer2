@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5645826755442745266}
   - component: {fileID: 7199773757178083166}
   - component: {fileID: -6232845583300639257}
-  - component: {fileID: 3418178237216134688}
   - component: {fileID: 2652053476607820540}
   - component: {fileID: 4148810584803191207}
   m_Layer: 0
@@ -169,37 +168,6 @@ CircleCollider2D:
   m_Offset: {x: 0.00381279, y: 0.029111266}
   serializedVersion: 2
   m_Radius: 0.28720152
---- !u!114 &3418178237216134688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8401804446840108094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fca0dd814714b14c8ea54620b849163, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tag: Player
-  _layer:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  _action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8071618151879575830}
-        m_TargetAssemblyTypeName: DestroyObjectComponent, Assembly-CSharp
-        m_MethodName: DestroyObject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2652053476607820540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +195,7 @@ MonoBehaviour:
   _tag: Player
   _layer:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 2147483647
   _action:
     m_PersistentCalls:
       m_Calls:

@@ -14,7 +14,7 @@ public class EnterTriggerComponent : MonoBehaviour
 
      private void OnTriggerEnter2D(Collider2D other)
      {
-          // если пустой _layer
+          // если _layer не совпадает с нужным
           if (!other.gameObject.IsInLayer(_layer)) return;
 
           //если есть _tag и он не тот который мы хотим
