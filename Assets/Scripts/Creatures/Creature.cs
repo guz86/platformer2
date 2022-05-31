@@ -269,7 +269,7 @@ public class Creature : MonoBehaviour
         Animator.SetTrigger(AttackKey);
     }
     
-    public void OnAttackKey()
+    public void OnDoAttack()
     {
         _attackRange.Check();
         

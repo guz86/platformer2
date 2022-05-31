@@ -17,5 +17,6 @@ public class SpawnComponent : MonoBehaviour
         // localScale - объект относительно героя - родительского объекта
         // lossyScale - объект относительно внешнего мира
         instantiate.transform.localScale = _target.lossyScale;
+        instantiate.SetActive(true);
     }
 }
