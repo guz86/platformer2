@@ -272,6 +272,12 @@ public class Creature : MonoBehaviour
     public void OnAttackKey()
     {
         _attackRange.Check();
+        
+        // для спауна анимации от атаки мечом
+        // в героя добавляем объект SwordSlashPosition для него SpawnComponent и префаб SwordSlashParticles
+        // в SwordSlashParticles добавляем SpriteAnimationClip c анимацей, по результут удаляем
+        Particles.Spawn("Slash");
+        
         /*// достаем наши объекты с которые атакуем
         var gos = _attackRange.GetObjectsInRange();
         // попробуем у них получить компонент здоровья

@@ -5134,6 +5134,7 @@ Transform:
   - {fileID: 2346148813832257544}
   - {fileID: 7461714962878239311}
   - {fileID: 1755562738597353125}
+  - {fileID: 5059680331190892046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5493,6 +5494,8 @@ MonoBehaviour:
     Component: {fileID: 58060002697791768}
   - Id: Throw
     Component: {fileID: 6287634572174307368}
+  - Id: Slash
+    Component: {fileID: 1486370002141439660}
 --- !u!1 &1541305200226087940
 GameObject:
   m_ObjectHideFlags: 0
@@ -5558,6 +5561,52 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _isTouchingLayer: 0
+--- !u!1 &4567575703137522760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5059680331190892046}
+  - component: {fileID: 1486370002141439660}
+  m_Layer: 10
+  m_Name: SwordSlashPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 2800000, guid: 33f32142c2c2d4662be5f5274db27158, type: 3}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5059680331190892046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567575703137522760}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.541, y: -0.092, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 58060003358763762}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1486370002141439660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4567575703137522760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a58112ace654b3a4a82d07c5258b42c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 5059680331190892046}
+  _prefab: {fileID: 8401804446840108094, guid: be4beadfcf877df4c8e5d026bdfc81c1, type: 3}
 --- !u!1 &5255440808705830916
 GameObject:
   m_ObjectHideFlags: 0
