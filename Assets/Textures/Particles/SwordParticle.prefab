@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5209723163479739394}
   - component: {fileID: 5209723163479739392}
   - component: {fileID: 5209723163479739395}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SwordParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}

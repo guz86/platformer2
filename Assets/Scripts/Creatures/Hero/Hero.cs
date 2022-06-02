@@ -41,6 +41,9 @@ namespace Creatures.Hero
     
         //триггер для анимации бросания меча
         private static readonly int ThrowKey = Animator.StringToHash("throw");
+        
+        //анимация для цепляние за стену
+        private static readonly int IsOnWall = Animator.StringToHash("is-on-wall");
     
         // для партиклов при прыжке перенесли в базовый SpawnListComponent
         //[SerializeField] private SpawnComponent _jumpPaticles;
@@ -106,17 +109,28 @@ namespace Creatures.Hero
         {
             base.Update();
             //для цепляния к стенам
-            // если соприкосается и еще давит на стену, то без гравитации и вешаем bool 
-            if (_wallCheck.isTouchingLayer && Direction.x == transform.localScale.x)
+            // нужно понять что мы давим в тоже самое направление куда и смотрит спрайт
+            var moveToSomeDirection = Direction.x * transform.lossyScale.x > 0;
+            // если больше нуля, то мы давим в ту же сторону куда развернулся герой
+            
+            // если соприкосается и еще давит на стену, то без гравитации и вешаем bool
+            // мы будем висеть на стене если двигаемся в ее сторону
+            if (_wallCheck.isTouchingLayer && moveToSomeDirection)
             {
                 _isOnWall = true;
                 Rigidbody.gravityScale = 0;
+                
+                // чтобы не ездил по стенам вверх
+                Direction.y = 0;
             }
             else
             {
                 _isOnWall = false;
                 Rigidbody.gravityScale = _defaultGravityScale;
             }
+            
+            // для проигрывания анимации цепляния за стену
+            Animator.SetBool(IsOnWall,_isOnWall);
         }
   
         protected override float CalculateYVelocity()
@@ -141,7 +155,10 @@ namespace Creatures.Hero
         {
             // расчет скорости прыжка
             // если мы не на земле и у нас уже доступен двойной прыжок
-            if (!IsGrounded && _allowDoubleJump)
+            // if (!IsGrounded && _allowDoubleJump)
+            // добавим !_isOnWall чтобы нельзя было сразу же прыгать со стены,
+            // только после того как отпустимся от стены
+            if (!IsGrounded && _allowDoubleJump && !_isOnWall)
             {
                 // анимация прыжка
                 Particles.Spawn("Jump");

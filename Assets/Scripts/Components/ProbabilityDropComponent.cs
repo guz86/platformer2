@@ -46,9 +46,13 @@ namespace Components
             {
                 // в цикле получим рандомное значение
                 var random = UnityEngine.Random.value * total;
+                var current = 0f;
                 foreach (var dropData in sortedDrop)
                 {
-                    if (dropData.Probability >= random)
+                    current += dropData.Probability;
+                    // постепенно будем увеличивать вероятность
+                    
+                    if (current >= random)
                     {
                         // запишем в массив наш элемент
                         itemsToDrop[itemCount] = dropData.Drop;
