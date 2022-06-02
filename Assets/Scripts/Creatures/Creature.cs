@@ -275,7 +275,7 @@ public class Creature : MonoBehaviour
         
         // для спауна анимации от атаки мечом
         // в героя добавляем объект SwordSlashPosition для него SpawnComponent и префаб SwordSlashParticles
-        // в SwordSlashParticles добавляем SpriteAnimationClip c анимацей, по результут удаляем
+        // в SwordSlashParticles добавляем SpriteAnimationClip c анимацей, по результату удаляем
         Particles.Spawn("Slash");
         
         /*// достаем наши объекты с которые атакуем

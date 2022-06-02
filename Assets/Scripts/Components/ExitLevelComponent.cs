@@ -7,7 +7,10 @@ public class ExitLevelComponent : MonoBehaviour
 
     public void Exit()
     {
-        // загружаем новую сцену
+        // нужно найти сессию
+        var session = FindObjectOfType<GameSession>();
+        session.Save();
+        // загружаем новую сцену 
         SceneManager.LoadScene(_sceneName);
     }
 }

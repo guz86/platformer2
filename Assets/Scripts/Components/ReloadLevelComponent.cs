@@ -8,8 +8,10 @@ public class ReloadLevelComponent : MonoBehaviour
       // после добавление сессии восстанавливаем состояние героя по дефолту
       // выделяем текущую сессию и удаляем
       var session = FindObjectOfType<GameSession>();
-      Destroy(session.gameObject);
       
+         //Destroy(session.gameObject);
+      // не будем удалять текущую сессию а загрузим в нее нашу сохраненную
+      session.LoadLastSave();
       
       var scene = SceneManager.GetActiveScene();
       SceneManager.LoadScene(scene.name);
