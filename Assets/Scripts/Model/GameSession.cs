@@ -19,6 +19,8 @@ public class GameSession : MonoBehaviour
         }
         else
         {
+            // для первой сессии сохраняем, т.к. ExitLevelComponent будет со второй сцены отрабатывать
+            Save();
             // если сессий нет, то сохраняем (хранилище внутри сцен)
             DontDestroyOnLoad(this);
         }

@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public static class GameObjectExtension
+namespace Utils
 {
-    // как будто вызываем метод у нашего обхекта go, находится ли слой
-    // go в маске layer
-    public static bool IsInLayer(this GameObject go, LayerMask layer)
+    public static class GameObjectExtension
     {
-        return layer == (layer | 1 << go.layer);
-        //битовая маска                     побитовый сдвиг  маски
-        // если GameObject будет не в том слое 
+        // как будто вызываем метод у нашего обхекта go, находится ли слой
+        // go в маске layer
+        public static bool IsInLayer(this GameObject go, LayerMask layer)
+        {
+            return layer == (layer | 1 << go.layer);
+            //битовая маска                     побитовый сдвиг  маски
+            // если GameObject будет не в том слое 
+        }
     }
 }
