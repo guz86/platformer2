@@ -72,7 +72,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58060002399883346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.656, y: 0, z: 0}
+  m_LocalPosition: {x: 0.78, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,7 +94,7 @@ MonoBehaviour:
   _radius: 0.3
   _mask:
     serializedVersion: 2
-    m_Bits: 1015
+    m_Bits: 3063
   _inOverlap:
     m_PersistentCalls:
       m_Calls:
@@ -5328,7 +5328,7 @@ MonoBehaviour:
   _invertScale: 0
   _speed: 4
   JumpSpeed: 12
-  _damageVelocity: 8
+  _damageVelocity: 4
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -5507,7 +5507,7 @@ GameObject:
   - component: {fileID: 2346148813832257544}
   - component: {fileID: 7296519330668624148}
   - component: {fileID: 7538848445309955820}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5664,7 +5664,7 @@ GameObject:
   - component: {fileID: 2047657811041965587}
   - component: {fileID: 3322820787441004454}
   - component: {fileID: 8772806566050995780}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5729,7 +5729,7 @@ GameObject:
   - component: {fileID: 7461714962878239311}
   - component: {fileID: 7850111471411749130}
   - component: {fileID: 2992315653531019566}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: IntaractionCheck
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 33f32142c2c2d4662be5f5274db27158, type: 3}
