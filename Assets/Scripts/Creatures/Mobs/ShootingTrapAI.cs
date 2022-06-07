@@ -1,5 +1,4 @@
-﻿using System;
-using Components.ColliderBased;
+﻿using Components.ColliderBased;
 using Components.GoBased;
 using UnityEngine;
 using Utils;
