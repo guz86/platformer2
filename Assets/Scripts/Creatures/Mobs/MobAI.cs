@@ -10,8 +10,8 @@ namespace Creatures.Mobs
     {
         // мог видеть, мог кусаться, мог ходить
 
-        [SerializeField] private LayerCheck _vision;
-        [SerializeField] private LayerCheck _canAttack;
+        [SerializeField] private ColliderCheck _vision;
+        [SerializeField] private ColliderCheck _canAttack;
         // время ожидания после того как моб увидел
         [SerializeField] private float _alarmDelay = 1f;
         [SerializeField] private float _attackCooldown = 1f;

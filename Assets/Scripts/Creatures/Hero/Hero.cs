@@ -10,9 +10,9 @@ namespace Creatures.Hero
     {
     
         // Ground указываем для поверхностей от которых можно прыгать, на поверхности вешаем слой Ground
-        // перевод на LayerCheck
+        // перевод на ColliderCheck
         // [SerializeField] private float _groundCheckRadius;
-        // перевод на LayerCheck
+        // перевод на ColliderCheck
         //[SerializeField] private Vector3 _groundCheckPoisitionDelta;
     
    
@@ -56,7 +56,7 @@ namespace Creatures.Hero
         [SerializeField] private AnimatorController _disarmed;
 
         // для механики цепляния к стенам
-        [SerializeField] private LayerCheck _wallCheck;
+        [SerializeField] private ColliderCheck _wallCheck;
     
         private bool _isOnWall;
         private float _defaultGravityScale;

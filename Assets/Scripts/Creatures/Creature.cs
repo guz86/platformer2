@@ -33,7 +33,7 @@ public class Creature : MonoBehaviour
     // Ground указываем для поверхностей от которых можно прыгать, на поверхности вешаем слой Ground
     // [SerializeField] private float _groundCheckRadius;
     //[SerializeField] private Vector3 _groundCheckPoisitionDelta;
-    [SerializeField] private LayerCheck _groundCheck;
+    [SerializeField] private ColliderCheck _groundCheck;
     
     // переменная для нашей атаке, вызов проверки объектов для атаки GetObjectsInRange
     // добавить на герое наш объект на мече

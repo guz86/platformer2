@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 58060002399883347}
   - component: {fileID: 58060002399883356}
   - component: {fileID: 1446676231}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: 33f32142c2c2d4662be5f5274db27158, type: 3}
@@ -5557,10 +5557,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9215385e9021ca649a6deb855c6846c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layer:
+  Layer:
     serializedVersion: 2
     m_Bits: 64
-  _isTouchingLayer: 0
+  IsTouchingLayer: 0
 --- !u!1 &4567575703137522760
 GameObject:
   m_ObjectHideFlags: 0
@@ -5714,10 +5714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9215385e9021ca649a6deb855c6846c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _layer:
+  Layer:
     serializedVersion: 2
     m_Bits: 512
-  _isTouchingLayer: 0
+  IsTouchingLayer: 0
 --- !u!1 &7130321473957179422
 GameObject:
   m_ObjectHideFlags: 0

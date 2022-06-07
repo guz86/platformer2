@@ -17,7 +17,7 @@ namespace Components.ColliderBased
 
           private void OnTriggerEnter2D(Collider2D other)
           {
-               // если _layer не совпадает с нужным
+               // если Layer не совпадает с нужным
                if (!other.gameObject.IsInLayer(_layer)) return;
 
                //если есть _tag и он не тот который мы хотим
