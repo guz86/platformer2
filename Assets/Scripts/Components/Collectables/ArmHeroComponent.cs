@@ -1,7 +1,7 @@
 using Creatures.Hero;
 using UnityEngine;
-
-namespace Components.Collectables
+// добавили систему инвентаря
+/*namespace Components.Collectables
 {
     public class ArmHeroComponent : MonoBehaviour
     {
@@ -14,4 +14,4 @@ namespace Components.Collectables
             }
         }
     }
-}
+}*/

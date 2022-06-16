@@ -1,5 +1,7 @@
+using System;
 using Components.ColliderBased;
 using Components.Health;
+using Model.Data;
 using UnityEditor.Animations;
 using UnityEngine;
 using Utils;
@@ -76,6 +78,12 @@ namespace Creatures.Hero
 
         // для сохранения данных в сессии
         private GameSession _session;
+        
+        
+        
+        // считаем мечи>монетки
+        private int SwordCount => _session.Data.Inventory.Count("Sword");
+        private int CoinCount => _session.Data.Inventory.Count("Coin");
 
         protected override void Awake()
         {
@@ -89,14 +97,32 @@ namespace Creatures.Hero
         private void Start()
         {
             // берем данные с текущей сессии, после очистки в class GameSession в Awake 
-            _session = FindObjectOfType<GameSession>();
+            _session = FindObjectOfType<GameSession>(); 
             // обновляем состояние с оружием, вооружаем
             UpdateHeroWeapon();
             // инициализация здоровья на герое
             var health = GetComponent<HealthComponent>();
             // метод из HealthComponent в него передаем состояние hp в начале
             health.SetHealth(_session.Data.Hp);
+            
+            //для отслеживания поднятия предметов, метод-подписчик OnInventoryChanged
+            _session.Data.Inventory.OnChanged += OnInventoryChanged;
         }
+
+        private void OnDestroy()
+        {
+            // обязательно отписаться
+            _session.Data.Inventory.OnChanged -= OnInventoryChanged;
+        }
+
+        private void OnInventoryChanged(string id, int value)
+        {
+            if (id == "Sword")
+            {
+                UpdateHeroWeapon();
+            }
+        }
+        
 
         // для обновления здоровья на объекте в _OnChange в HealthComponent
         // добавим этот метод OnHealthChange
@@ -204,20 +230,29 @@ namespace Creatures.Hero
 
 
 
-        // добавление монеток
-        public void AddCoins(int coins)
+        // добавление чего угодно
+        public void AddInInventory(string id, int value)
         {
-            _session.Data.Coins += coins;
-            Debug.Log($"Монеток: {_session.Data.Coins}");
+            _session.Data.Inventory.Add(id,value);
         }
+        
+        // // добавление монеток, убираем с добавлением инвентаря
+        // public void AddCoins(int coins)
+        // {
+        //     _session.Data.Coins += coins;
+        //     Debug.Log($"Монеток: {_session.Data.Coins}");
+        // }
+        
+        
 
         // получение урона от пик, вызов анимации, подброс героя вверх
         public override void TakeDamage()
         {
             base.TakeDamage();
 
+             
             // ограничение вылетающих монет при причинении урона герою
-            if (_session.Data.Coins > 0)
+            if (CoinCount > 0)
             {
                 SpawnCoins();
             }
@@ -225,11 +260,13 @@ namespace Creatures.Hero
 
         // разлетающиеся монетки от урона
         private void SpawnCoins()
-        {
+        { 
             // считаем количество монет, либо 5 либо меньше, из того что есть у героя
-            var numCoinsToDispose = Mathf.Min(_session.Data.Coins, 5);
+            var numCoinsToDispose = Mathf.Min(CoinCount, 5);
             // убираем вылетающие монеты
-            _session.Data.Coins -= numCoinsToDispose;
+            //_session.Data.Coins -= numCoinsToDispose;
+            _session.Data.Inventory.Remove("Coin", numCoinsToDispose);
+            
             // получаем текущую настройку для вылета партиколов
             var burst = _hitParticles.emission.GetBurst(0);
             // передаем ей количество койнов для вылета
@@ -294,10 +331,14 @@ namespace Creatures.Hero
             }
         }
 
+        
         public override void Attack()
         {
+             
+            
             // если не вооружен пропустить
-            if (!_session.Data.IsArmed)
+            //if (!_session.Data.IsArmed)
+            if (SwordCount <= 0)
             {
                 return;
             }
@@ -321,19 +362,24 @@ namespace Creatures.Hero
         }
     }*/
 
-        public void ArmHero()
-        {
-            // вооружаем героя
-            _session.Data.IsArmed = true;
-            UpdateHeroWeapon();
-        }
+        // убираем после добавления инвентаря где идет подсчет мечей
+        // public void ArmHero()
+        // {
+        //     // вооружаем героя
+        //     _session.Data.IsArmed = true;
+        //     UpdateHeroWeapon();
+        // }
 
         // вооружаем
         // обновим данные героя на старте для оружия
         private void UpdateHeroWeapon()
         {
+            
+            var numSwords = _session.Data.Inventory.Count("Sword");
+            
             // если вооружен/невооружен в сессии, то анимация
-            if (_session.Data.IsArmed)
+            //if (_session.Data.IsArmed)
+            if (SwordCount > 0)
             {
                 Animator.runtimeAnimatorController = _armed;
             }

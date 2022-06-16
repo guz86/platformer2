@@ -75,6 +75,26 @@ PrefabInstance:
       propertyPath: _clips.Array.data[0]._sprites.Array.data[3]
       value: 
       objectReference: {fileID: 3444832735345940322, guid: 25c2a845941a66c468b6036d2fef3ee1, type: 3}
+    - target: {fileID: 1796693206306804038, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+      propertyPath: _clips.Array.data[1]._onComplete.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796693206306804038, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+      propertyPath: _clips.Array.data[1]._onComplete.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796693206306804038, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+      propertyPath: _clips.Array.data[1]._onComplete.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3357534224555661466}
+    - target: {fileID: 1796693206306804038, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+      propertyPath: _clips.Array.data[1]._onComplete.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1796693206306804038, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+      propertyPath: _clips.Array.data[1]._onComplete.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: DestroyObjectComponent, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1796693206306804040, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
       propertyPath: m_Name
       value: GoldCoinParticle
@@ -83,5 +103,14 @@ PrefabInstance:
       propertyPath: _numberCouins
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3284020848516591989, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+      propertyPath: _count
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+--- !u!1 &3357534224555661466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1796693206306804040, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+  m_PrefabInstance: {fileID: 3924739075975481810}
+  m_PrefabAsset: {fileID: 0}

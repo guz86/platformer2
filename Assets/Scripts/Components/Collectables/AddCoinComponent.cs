@@ -1,7 +1,9 @@
 ﻿using Creatures.Hero;
 using UnityEngine;
 
-namespace Components.Collectables
+// добавили систему инвентаря
+
+/*namespace Components.Collectables
 {
     public class AddCoinComponent : MonoBehaviour
     {
@@ -18,4 +20,4 @@ namespace Components.Collectables
             _heroPlayer.AddCoins(_numberCouins);
         }
     }
-}
+}*/
