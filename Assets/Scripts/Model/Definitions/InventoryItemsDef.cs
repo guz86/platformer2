@@ -25,8 +25,13 @@ namespace Model.Definitions
                 }
             }
             //т.к. структура
-            return default;
-        }
+            return default; 
+    }
+        
+        //откроем список для редактора для доступа из InventoryIdAttributeDrawer
+#if UNITY_EDITOR
+        public ItemDef[] itemsForEditor => _items;
+#endif
         
         //т.к. описание изменяться не должно делаем структуру
         [Serializable]

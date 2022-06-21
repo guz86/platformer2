@@ -15,3 +15,4 @@ MonoBehaviour:
   _items:
   - _id: Coin
   - _id: Sword
+  - _id: Key
