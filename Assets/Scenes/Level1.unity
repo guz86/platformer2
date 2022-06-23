@@ -5697,8 +5697,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47ac4199718471b9dedf5df7db36b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _id: Key
-  _count: 1
+  _required:
+  - Id: Coin
+    Value: 1
+  - Id: Key
+    Value: 1
   _removeAfterUse: 1
   _onSuccess:
     m_PersistentCalls:
