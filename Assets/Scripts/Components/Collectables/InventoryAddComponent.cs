@@ -6,7 +6,8 @@ namespace Components.Collectables
 {
     public class InventoryAddComponent : MonoBehaviour
     {
-        // 
+        //  вместо AddCoinComponent ArmHeroComponent
+        // что и сколько добавляем
         [InventoryId][SerializeField] private string _id;
         [SerializeField] private int _count;
 

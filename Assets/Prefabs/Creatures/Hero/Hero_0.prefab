@@ -5434,7 +5434,7 @@ MonoBehaviour:
   _onDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5145782913520027103}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ReloadLevelComponent, Assembly-CSharp
         m_MethodName: Reload
         m_Mode: 1

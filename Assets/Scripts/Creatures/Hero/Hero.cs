@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Components.ColliderBased;
 using Components.Health;
 using Model.Data;
@@ -57,11 +58,19 @@ namespace Creatures.Hero
         [SerializeField] private AnimatorController _armed;
         [SerializeField] private AnimatorController _disarmed;
 
+        // настройки для кидания комбо мечей 3шт
+        [Header("Super throw")]
+        [SerializeField] private Cooldown _SuperThrowCooldown;
+        [SerializeField] private int _superThrowParticles; // количество выкидываемых мечей
+        [SerializeField] private float _superThrowDelay; // сколько секунд пройдет между броском
+        
         // для механики цепляния к стенам
         [SerializeField] private ColliderCheck _wallCheck;
     
         private bool _isOnWall;
         private float _defaultGravityScale;
+        
+        private bool _superThrow;
     
         // вместо интеракций будет использоваться CheckCircleOverlap
         // массив объектов из 1 элемента, использование переключателя
@@ -78,9 +87,8 @@ namespace Creatures.Hero
 
         // для сохранения данных в сессии
         private GameSession _session;
-        
-        
-        
+
+
         // считаем мечи>монетки
         private int SwordCount => _session.Data.Inventory.Count("Sword");
         private int CoinCount => _session.Data.Inventory.Count("Coin");
@@ -117,6 +125,7 @@ namespace Creatures.Hero
 
         private void OnInventoryChanged(string id, int value)
         {
+            // подбор оружия
             if (id == "Sword")
             {
                 UpdateHeroWeapon();
@@ -233,7 +242,7 @@ namespace Creatures.Hero
         // добавление чего угодно
         public void AddInInventory(string id, int value)
         {
-            _session.Data.Inventory.Add(id,value);
+            _session.Data.Inventory.Add(id, value);
         }
         
         // // добавление монеток, убираем с добавлением инвентаря
@@ -250,7 +259,6 @@ namespace Creatures.Hero
         {
             base.TakeDamage();
 
-             
             // ограничение вылетающих монет при причинении урона герою
             if (CoinCount > 0)
             {
@@ -374,9 +382,6 @@ namespace Creatures.Hero
         // обновим данные героя на старте для оружия
         private void UpdateHeroWeapon()
         {
-            
-            var numSwords = _session.Data.Inventory.Count("Sword");
-            
             // если вооружен/невооружен в сессии, то анимация
             //if (_session.Data.IsArmed)
             if (SwordCount > 0)
@@ -389,21 +394,79 @@ namespace Creatures.Hero
             }
         }
 
+        
+        // в SpawnListComponent добавляем объект TrowSwordSpamPosition с анимацией летящего меча
+        // подвяжем вылет 
         public void OnDoThrow()
         {
-            // в SpawnListComponent добавляем объект TrowSwordSpamPosition с анимацией летящего меча
-            // подвяжем вылет 
+            // время для броска, проверяем это супербросок
+            if (_superThrow)
+            {
+                //рассчитаем количество мечей
+                var numThrows = Mathf.Min(_superThrowParticles, SwordCount - 1);
+                StartCoroutine(DoSuperThrow(numThrows));
+            }
+            else
+            {
+                ThrowRemoveFromInventory();
+            }
+
+            _superThrow = false;
+        }
+
+        private IEnumerator DoSuperThrow(int numThrows)
+        {
+            // для того чтобы добавить ожидание используем StartCoroutine
+            for (int i = 0; i < numThrows; i++)
+            {
+                ThrowRemoveFromInventory();
+                yield return new WaitForSeconds(_superThrowDelay);
+            }
+        }
+
+        // выносим обычный бросок
+        private void ThrowRemoveFromInventory()
+        {
             Particles.Spawn("Throw");
+            
+            // заберу один меч Sword
+            _session.Data.Inventory.Remove("Sword", 1);
         }
     
-        public void Throw()
+        // убирем, вместо него PerformThrowing()
+        // public void Throw()
+        // {
+        //     // если кулдаун прошел, то мы стартуем анимацию и сбрасываем время кулдауна
+        //     if (_throwCooldown.IsReady && SwordCount > 1)
+        //     {
+        //         Animator.SetTrigger(ThrowKey);
+        //         _throwCooldown.Reset();
+        //     }
+        // }
+
+        public void StartThrowing()
         {
-            // если кулдаун прошел, то мы стартуем анимацию и сбрасываем время кулдауна
-            if (_throwCooldown.IsReady)
+            // зажали кнопку и нужно начать отчитывать кулдаун
+            _SuperThrowCooldown.Reset();
+            
+        }
+
+        public void PerformThrowing()
+        {
+            // отпустили кнопку
+            // если не готовы к броску, то выйдем
+            if (!_throwCooldown.IsReady ||  SwordCount <= 1) return;
+            
+            // если готов супербросок, поднимаем флаг
+            if (_SuperThrowCooldown.IsReady)
             {
-                Animator.SetTrigger(ThrowKey);
-                _throwCooldown.Reset();
+                _superThrow = true;
             }
+            // сам бросок будем совершать на OnDoThrow()
+            
+            //стартуем анимацию и сбрасываем время кулдауна
+            Animator.SetTrigger(ThrowKey);
+            _throwCooldown.Reset();
         }
     }
 }

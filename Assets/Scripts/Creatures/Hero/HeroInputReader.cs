@@ -39,11 +39,18 @@ namespace Creatures.Hero
         // на герое в PlayerInput в Events на герое в Trow добавляем вызов OnTrow
         public void OnThrow(InputAction.CallbackContext context)
         {
-            if (context.performed)
+            //if (context.performed)
+            if (context.started)
             {
-                _hero.Throw();
+                // мы должны зажать кнопку и когда опустим произвести бросок
+                _hero.StartThrowing();
+                //_hero.Throw();
             }
-        
+           if (context.canceled)
+            {
+                // отпустили кнопку
+                _hero.PerformThrowing();
+            }
         }
     }
 }
