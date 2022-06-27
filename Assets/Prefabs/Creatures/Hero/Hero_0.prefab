@@ -5135,6 +5135,7 @@ Transform:
   - {fileID: 7461714962878239311}
   - {fileID: 1755562738597353125}
   - {fileID: 5059680331190892046}
+  - {fileID: 1032692545968792740}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5338,9 +5339,13 @@ MonoBehaviour:
   _slamDownVelocity: 15
   _throwCooldown:
     _value: 1
-  _hitParticles: {fileID: 58060003002059314}
+  _hitDrop: {fileID: 414901078851069613}
   _armed: {fileID: 9100000, guid: e674063ad7fe6a34db188975abcf8823, type: 2}
   _disarmed: {fileID: 9100000, guid: 9683fe9ecb8735e49b8ee93623901e86, type: 2}
+  _SuperThrowCooldown:
+    _value: 1
+  _superThrowParticles: 3
+  _superThrowDelay: 0.2
   _wallCheck: {fileID: 8772806566050995780}
   _intarationCheck: {fileID: 7850111471411749130}
 --- !u!50 &58060003358763775
@@ -5434,8 +5439,9 @@ MonoBehaviour:
   _onDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ReloadLevelComponent, Assembly-CSharp
+      - m_Target: {fileID: 5145782913520027103}
+        m_TargetAssemblyTypeName: Components.LevelManagment.ReloadLevelComponent,
+          Assembly-CSharp
         m_MethodName: Reload
         m_Mode: 1
         m_Arguments:
@@ -5653,6 +5659,87 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 1755562738597353125}
   _prefab: {fileID: 8401804446840108094, guid: 10e93dc50efce884f9f39abe09ac51ab, type: 3}
+--- !u!1 &5488953093396632130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032692545968792740}
+  - component: {fileID: 414901078851069613}
+  - component: {fileID: 1533329010567163988}
+  m_Layer: 0
+  m_Name: HitDrop
+  m_TagString: Untagged
+  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1032692545968792740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488953093396632130}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.09, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 58060003358763762}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &414901078851069613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488953093396632130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71d4e720f5434124ac28b8e7bad385fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _count: 10
+  _drop:
+  - Drop: {fileID: 1796693206306804040, guid: d06f8c349f9b2514dbc271080462860b, type: 3}
+    Probability: 100
+  _onDropCalculate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1533329010567163988}
+        m_TargetAssemblyTypeName: DefaultNamespace.RandomSpawner, Assembly-CSharp
+        m_MethodName: StartDrop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  spawnOnEnable: 0
+--- !u!114 &1533329010567163988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488953093396632130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78231a9389fa4528a0c8109077456b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sectorAngle: 220
+  _sectorRotation: 0
+  _waitTime: 0.1
+  _speed: 3
 --- !u!1 &5650198511789306745
 GameObject:
   m_ObjectHideFlags: 0

@@ -78,5 +78,11 @@ namespace Components
         public class DropEvent : UnityEvent<GameObject[]>
         {
         };
+
+        // метод для выпадающих монеток
+        public void SetCount(int count)
+        {
+            _count = count;
+        }
     }
 }

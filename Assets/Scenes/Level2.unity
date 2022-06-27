@@ -823,6 +823,8 @@ MonoBehaviour:
       _inventory:
       - Id: Sword
         Value: 10
+      - Id: Coin
+        Value: 30
     Hp: 5
 --- !u!4 &74741967
 Transform:
@@ -2837,18 +2839,6 @@ PrefabInstance:
     - target: {fileID: 58060003358763762, guid: e4422a270c445c347985237362f63887, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 58060003358763773, guid: e4422a270c445c347985237362f63887, type: 3}
-      propertyPath: _superThrowDelay
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 58060003358763773, guid: e4422a270c445c347985237362f63887, type: 3}
-      propertyPath: _superThrowParticles
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 58060003358763773, guid: e4422a270c445c347985237362f63887, type: 3}
-      propertyPath: _SuperThrowCooldown._value
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4422a270c445c347985237362f63887, type: 3}

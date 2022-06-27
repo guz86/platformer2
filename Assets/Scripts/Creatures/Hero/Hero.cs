@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Components;
 using Components.ColliderBased;
 using Components.Health;
 using Model.Data;
@@ -34,13 +35,14 @@ namespace Creatures.Hero
         [SerializeField] private Cooldown _throwCooldown;
 
         [Space]
-        [Header("Particles")]
+        //[Header("Particles")]
         // чтобы не вызывать каждый компонент по отдельности выделим SpawnListComponent
         // для анимации пыли при беге перенесли в базовый SpawnListComponent
         //[SerializeField] private SpawnComponent _footStepPosition;
 
         // для партиклов при нанесении урона, разлетающиеся монетки
-        [SerializeField] private ParticleSystem _hitParticles;
+        //[SerializeField] private ParticleSystem _hitParticles; // берем реальные монеты как из бочки
+        [SerializeField] private ProbabilityDropComponent _hitDrop;
     
         //триггер для анимации бросания меча
         private static readonly int ThrowKey = Animator.StringToHash("throw");
@@ -275,16 +277,22 @@ namespace Creatures.Hero
             //_session.Data.Coins -= numCoinsToDispose;
             _session.Data.Inventory.Remove("Coin", numCoinsToDispose);
             
-            // получаем текущую настройку для вылета партиколов
-            var burst = _hitParticles.emission.GetBurst(0);
-            // передаем ей количество койнов для вылета
-            burst.count = numCoinsToDispose;
-            // сохраним новое значение
-            _hitParticles.emission.SetBurst(0, burst);
-
-            _hitParticles.gameObject.SetActive(true);
-
-            _hitParticles.Play();
+            //сделаем отдельный метод, в который будем передавать количество монет
+            _hitDrop.SetCount(numCoinsToDispose);
+            _hitDrop.CalculateDrop(); // в самом дропе будет выборос только сильверкойнов
+            
+            
+            // // устаревший выброс пустых монет
+            // // получаем текущую настройку для вылета партиколов
+            // var burst = _hitParticles.emission.GetBurst(0);
+            // // передаем ей количество койнов для вылета
+            // burst.count = numCoinsToDispose;
+            // // сохраним новое значение
+            // _hitParticles.emission.SetBurst(0, burst);
+            //
+            // _hitParticles.gameObject.SetActive(true);
+            //
+            // _hitParticles.Play();
         }
 
         // после нажатия пробела, проверяем пересечения героя с объектом(переключателем)
@@ -315,11 +323,11 @@ namespace Creatures.Hero
         //     _footStepPosition.Spawn();
         // }
 
-        // заберем партиклы от объекта для TeleportComponent
-        public ParticleSystem GetHitParticleSystem()
-        {
-            return _hitParticles;
-        }
+        // // заберем партиклы от объекта для TeleportComponent // убираем т.к. стали выбрасывать реальные
+        // public ParticleSystem GetHitParticleSystem()
+        // {
+        //     return _hitParticles;
+        // }
 
         // для анимации приземления
         // нам нужно понять что мы приземлились с определенной скоростью

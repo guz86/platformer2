@@ -54,8 +54,8 @@ public class TeleportComponent : MonoBehaviour
         target.SetActive(true);
 
         // отключим парикл систему перед появлением // временное решение чтобы не спамить коинами
-        var _hitParticles = _hero.GetHitParticleSystem();
-        _hitParticles.gameObject.SetActive(false);
+        //var _hitParticles = _hero.GetHitParticleSystem();
+        //_hitParticles.gameObject.SetActive(false);
         
         // появление
         yield return SetAlfa(sprite, 1);
