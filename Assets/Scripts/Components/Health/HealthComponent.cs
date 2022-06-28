@@ -11,7 +11,8 @@ namespace Components.Health
         [SerializeField] private int _health;
         [SerializeField] private UnityEvent _onDamage;
         [SerializeField] private UnityEvent _onHeal; // исцеление
-        [SerializeField] private UnityEvent _onDie;
+        //[SerializeField] private UnityEvent _onDie; // нужен для TotemTower
+        [SerializeField] public UnityEvent _onDie; 
         //  для вызова с героя метода OnHealthChange для переноса здоровья в данные сессии
         [SerializeField] private HealthChangeEvent _OnChange;
 
@@ -53,7 +54,13 @@ namespace Components.Health
         {
             _health = health;
         }
-    
+
+        private void OnDestroy() // чтобы не было утечки памяти отписка которая была в TotemTower
+        {
+            _onDie.RemoveAllListeners();
+        }
+
+
         // для изменения хп во время выполнения вызывается через 
 #if UNITY_EDITOR
         [ContextMenu("Update Health")]

@@ -22,6 +22,16 @@ namespace Components.GoBased
             _routine = StartCoroutine(StartSpawn(items));
         }
 
+        // для мгновенного выстрела (GoContainerComponent) объектов без ожидания
+        public void DropImmediate(GameObject[] items)
+        {
+            foreach (var item in items)
+            {
+                Spawn(item);
+            }
+        }
+        
+        
         private IEnumerator StartSpawn(GameObject[] particles)
         {
             for (int i = 0; i < particles.Length; i++)

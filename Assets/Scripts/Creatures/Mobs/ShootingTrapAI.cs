@@ -1,5 +1,6 @@
-﻿using Components.ColliderBased;
-using Components.GoBased;
+﻿using System;
+using Components.Animations;
+using Components.ColliderBased;
 using UnityEngine;
 using Utils;
 
@@ -7,78 +8,25 @@ namespace Creatures.Mobs
 {
     public class ShootingTrapAI : MonoBehaviour
     {
-        // кидаться и кусаться
-        
-        [SerializeField] private ColliderCheck _vision;
-        
-        [Header("Melee")]
-        [SerializeField] private Cooldown _meleeCooldown;
-        [SerializeField] private CheckCircleOverlap _meleeAttack;
-        [SerializeField] private ColliderCheck _meleeCanAttack;
-
-        [Header("Range")]
-        [SerializeField] private Cooldown _rangeCooldown;
-        [SerializeField] private SpawnComponent _rangeAttack;
-        
-        // несколько анимационных ивентов
-        
-        private static readonly int Melee = Animator.StringToHash("melee");
-        private static readonly int Range = Animator.StringToHash("range");
-        
-        private Animator _animator;
-
-        // получим аниматор
-        private void Awake()
-        {
-            _animator = GetComponent<Animator>();
-        }
+        //[SerializeField] private ColliderCheck _vision; // нужен для TotemTower
+        [SerializeField] public ColliderCheck _vision;
+        [SerializeField] private Cooldown _cooldown;
+        //чтобы запустить анимацию атаки
+        [SerializeField] private SpriteAnimationClips _animation;
 
         private void Update()
         {
-            // если что то попадает в _vision и если мы можем атаковать
-            if (_vision.isTouchingLayer)
+            if (_vision.isTouchingLayer && _cooldown.IsReady)
             {
-                if (_meleeCanAttack.isTouchingLayer)
-                {
-                    // и если кд готов
-                    if (_meleeCooldown.IsReady)
-                    {
-                        MeleeAttack();
-                        return; // чтобы не было дальней атаки вблизи
-                    }
-                }
-                // если кд на дальную атаку готово
-                if (_rangeCooldown.IsReady)
-                {
-                    RangeAttack();
-                }
+                Shoot();
             }
         }
 
-        private void RangeAttack()
+        //private void Shoot() // нужен для TotemTower
+        public void Shoot()
         {
-            _animator.SetTrigger(Range);
+            _cooldown.Reset();
+            _animation.SetClip("start-attack");
         }
-
-        private void MeleeAttack()
-        {
-            _animator.SetTrigger(Melee);
-        }
-        
-        // методы которые будем вызывать из анимационных эффектов
-        // проверяем урон
-        private void OnMeleeAttack()
-        {
-            _meleeCooldown.Reset();
-            _meleeAttack.Check();
-        }
-        
-        // кидание жемчужин
-        private void OnRangeAttack()
-        {
-            _rangeCooldown.Reset();
-            _rangeAttack.Spawn();
-        }
-
     }
 }

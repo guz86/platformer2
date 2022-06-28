@@ -110,6 +110,7 @@ namespace Components.Animations
                     _onComplete?.Invoke(clip.Name);
                     if (clip.AllowNextClip)
                     {
+                        _currentFrame = 0;
                         _currentClip = (int) Mathf.Repeat(_currentClip + 1, _clips.Length);
                     }
                 }

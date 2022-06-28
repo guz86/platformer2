@@ -74,10 +74,7 @@ namespace Components
         }
 
 
-        [Serializable]
-        public class DropEvent : UnityEvent<GameObject[]>
-        {
-        };
+
 
         // метод для выпадающих монеток
         public void SetCount(int count)
@@ -85,4 +82,9 @@ namespace Components
             _count = count;
         }
     }
+    // вынесли на уровень выше, чтобы использовать для GoContainerComponent
+    [Serializable]
+    public class DropEvent : UnityEvent<GameObject[]>
+    {
+    };
 }
