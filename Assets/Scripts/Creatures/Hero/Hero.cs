@@ -90,6 +90,8 @@ namespace Creatures.Hero
         // для сохранения данных в сессии
         private GameSession _session;
 
+        //для использования зелья
+        private HealthComponent _health;
 
         // считаем мечи>монетки
         private int SwordCount => _session.Data.Inventory.Count("Sword");
@@ -111,9 +113,9 @@ namespace Creatures.Hero
             // обновляем состояние с оружием, вооружаем
             UpdateHeroWeapon();
             // инициализация здоровья на герое
-            var health = GetComponent<HealthComponent>();
+            _health = GetComponent<HealthComponent>();
             // метод из HealthComponent в него передаем состояние hp в начале
-            health.SetHealth(_session.Data.Hp);
+            _health.SetHealth(_session.Data.Hp);
             
             //для отслеживания поднятия предметов, метод-подписчик OnInventoryChanged
             _session.Data.Inventory.OnChanged += OnInventoryChanged;
@@ -475,6 +477,18 @@ namespace Creatures.Hero
             //стартуем анимацию и сбрасываем время кулдауна
             Animator.SetTrigger(ThrowKey);
             _throwCooldown.Reset();
+        }
+
+        // использование зелья здоровья
+        public void UsePotion()
+        {
+            var potionCount = _session.Data.Inventory.Count("HealthPotion");
+            if (potionCount > 0)
+            {
+                // добавляем 5 здоровья, убираем 1 зелье из инвентаря
+                _health.ModifyHealth(5);
+                _session.Data.Inventory.Remove("HealthPotion", 1);
+            }
         }
     }
 }

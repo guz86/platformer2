@@ -8397,6 +8397,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4111319214208666021, guid: d42e0f95bcb9bb34693f1c4ea0faf777, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d42e0f95bcb9bb34693f1c4ea0faf777, type: 3}
+--- !u!114 &1070885127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 58060003358763763, guid: e4422a270c445c347985237362f63887, type: 3}
+  m_PrefabInstance: {fileID: 58060003131838180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3c0354b244e9145ac29a3dc3d507b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1071321613 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3856045206111242582, guid: ee0d2e6132c172f419bffa78d16b5e9e, type: 3}
@@ -18613,6 +18624,46 @@ PrefabInstance:
       propertyPath: _onDie.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1665712550}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 4f65e55f-a9d0-436f-9854-dc1078c9c93b
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Hero/UseHealthPotion[/Keyboard/q]
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1070885127}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnUsePotion
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Creatures.Hero.HeroInputReader, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 58060003358763772, guid: e4422a270c445c347985237362f63887, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4422a270c445c347985237362f63887, type: 3}
 --- !u!1001 &331352052112233244
@@ -19266,11 +19317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7594297842776907866, guid: 26e5cdfa3867fbc43bf5e020f67515fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7594297842776907866, guid: 26e5cdfa3867fbc43bf5e020f67515fb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7594297842776907866, guid: 26e5cdfa3867fbc43bf5e020f67515fb, type: 3}
       propertyPath: m_LocalPosition.z

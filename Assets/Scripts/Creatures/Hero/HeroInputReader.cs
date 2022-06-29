@@ -52,6 +52,16 @@ namespace Creatures.Hero
                 _hero.PerformThrowing();
             }
         }
+        
+        // нажали на Q, выпили зелье из инвентаря
+        public void OnUsePotion(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                _hero.UsePotion();
+            }
+       
+        }
     }
 }
  
