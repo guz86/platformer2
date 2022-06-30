@@ -94,7 +94,7 @@ MonoBehaviour:
   _radius: 0.3
   _mask:
     serializedVersion: 2
-    m_Bits: 3063
+    m_Bits: 11255
   _inOverlap:
     m_PersistentCalls:
       m_Calls:
@@ -5309,6 +5309,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 64087548-e21f-47fb-99fb-0a5c719ed436
     m_ActionName: Hero/Throw[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 58060003358763763}
+        m_TargetAssemblyTypeName: Creatures.Hero.HeroInputReader, Assembly-CSharp
+        m_MethodName: OnUsePotion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4f65e55f-a9d0-436f-9854-dc1078c9c93b
+    m_ActionName: Hero/UseHealthPotion[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Hero
@@ -5439,7 +5455,7 @@ MonoBehaviour:
   _onDie:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5145782913520027103}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Components.LevelManagment.ReloadLevelComponent,
           Assembly-CSharp
         m_MethodName: Reload

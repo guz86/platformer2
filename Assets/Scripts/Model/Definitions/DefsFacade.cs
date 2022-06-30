@@ -14,7 +14,11 @@ namespace Model.Definitions
     public class DefsFacade : ScriptableObject
     {
         [SerializeField] private InventoryItemsDef _items;
+        //для сохраненных настроек
+        [SerializeField] private PlayerDef _player;  
+            
         public InventoryItemsDef Items => _items;
+        public PlayerDef Player => _player;
         
         // нужно сделать статические поля чтобы к ним можно было обращаться
         private static DefsFacade _instance;

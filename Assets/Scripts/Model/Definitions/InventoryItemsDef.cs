@@ -38,7 +38,11 @@ namespace Model.Definitions
         public struct ItemDef
         {
             [SerializeField] private string _id;
+            //стакаются или нет
+            [SerializeField]  private bool _isStackable;
+            
             public string Id => _id;
+            public bool IsStackable => _isStackable;
 
             public bool IsVoid => string.IsNullOrEmpty(_id);
         }
