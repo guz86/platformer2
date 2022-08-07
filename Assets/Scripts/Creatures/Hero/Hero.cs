@@ -201,6 +201,10 @@ namespace Creatures.Hero
             {
                 // анимация прыжка
                 Particles.Spawn("Jump");
+                
+                //звук прыжка
+                DoJumpVfx();
+                
                 // запретим прыгать 2й раз
                 _allowDoubleJump = false;
                 return JumpSpeed;
@@ -437,6 +441,10 @@ namespace Creatures.Hero
         // выносим обычный бросок
         private void ThrowRemoveFromInventory()
         {
+            
+            //звук броска меча
+            Sounds.Play("Throw");
+            
             Particles.Spawn("Throw");
             
             // заберу один меч Sword

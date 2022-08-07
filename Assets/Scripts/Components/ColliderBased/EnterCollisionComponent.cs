@@ -4,9 +4,9 @@ using UnityEngine.Events;
 
 namespace Components.ColliderBased
 {
-    // добавляем к пикам, tag Player
-// при столкновении объекта Player мы передаем Event с объектом с которым мы столнулись
-// добавляем копонент DamageComponent метод ApplyDamage из объекта пик
+        // добавляем к пикам, tag Bomb
+        // при столкновении объекта Bomb мы передаем Event с объектом с которым мы столнулись
+        // добавляем копонент DamageComponent метод ApplyDamage из объекта пик
     public class EnterCollisionComponent : MonoBehaviour
     {
         [SerializeField] private string _tag;
@@ -23,8 +23,8 @@ namespace Components.ColliderBased
         }
     }
     [Serializable]
-// создаем класс и наследуемся с аргументом класса GameObject в качестве типа,
-// для вызова other.gameObject
+        // создаем класс и наследуемся с аргументом класса GameObject в качестве типа,
+        // для вызова other.gameObject
     public class EnterEvent : UnityEvent<GameObject>
     {
     }

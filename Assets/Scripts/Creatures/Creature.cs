@@ -1,3 +1,4 @@
+using Components.Audio;
 using Components.ColliderBased;
 using Components.GoBased;
 using UnityEngine;
@@ -55,6 +56,9 @@ public class Creature : MonoBehaviour
     //private Animator _animator;
     protected Animator Animator;
     // было для разваорота героя private SpriteRenderer _sprite;
+    
+    //для проигрывания звуков
+    protected PlaySoundsComponent Sounds;
 
     // для fix высокого прыжка
     private bool _isJumping;
@@ -73,6 +77,8 @@ public class Creature : MonoBehaviour
         // заберем физическое тело
         Rigidbody = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
+        // заберем для звуков
+        Sounds = GetComponent<PlaySoundsComponent>();
     }
     
     
@@ -206,6 +212,9 @@ public class Creature : MonoBehaviour
             // анимация прыжка
             //_jumpPaticles.Spawn();
             Particles.Spawn("Jump");
+            
+            //звук прыжка
+            DoJumpVfx();
         }
         // else if (_allowDoubleJump)
         // {
@@ -218,7 +227,13 @@ public class Creature : MonoBehaviour
 
         return yVelocity;
     }
-    
+
+    protected void DoJumpVfx()
+    {
+        
+        //звук прыжка
+        Sounds.Play("Jump");
+    }
     
     // разворот спрайта
     //private void UpdateSpriteDirection() открываем для того чтобы мобы могли поворачиваться в MobAI
@@ -267,6 +282,9 @@ public class Creature : MonoBehaviour
     public virtual void Attack()
     {
         Animator.SetTrigger(AttackKey);
+        
+        //звук атаки
+        Sounds.Play("Melee");
     }
     
     public void OnDoAttack()
@@ -277,6 +295,7 @@ public class Creature : MonoBehaviour
         // в героя добавляем объект SwordSlashPosition для него SpawnComponent и префаб SwordSlashParticles
         // в SwordSlashParticles добавляем SpriteAnimationClip c анимацей, по результату удаляем
         Particles.Spawn("Slash");
+        
         
         /*// достаем наши объекты с которые атакуем
         var gos = _attackRange.GetObjectsInRange();
