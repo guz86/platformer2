@@ -18,6 +18,7 @@ namespace Components.Audio
                 //     break;
                 // }
 
+                // пропускаем шаг, если не равно
                 if (audioData.Id != id) continue;
                 
                 _source.PlayOneShot(audioData.Clip);
