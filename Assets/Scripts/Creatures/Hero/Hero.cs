@@ -10,7 +10,9 @@ using Utils;
 
 namespace Creatures.Hero
 {
-    public class Hero : Creature
+   // public class Hero : Creature
+   // класс будет реализовывать дополнительно интерфейс
+   public class Hero : Creature, ICanAddInInventory
     {
     
         // Ground указываем для поверхностей от которых можно прыгать, на поверхности вешаем слой Ground
