@@ -2785,6 +2785,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &721312748 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 245883897, guid: e4422a270c445c347985237362f63887, type: 3}
+  m_PrefabInstance: {fileID: 928339842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &928339842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2850,6 +2855,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4422a270c445c347985237362f63887, type: 3}
+--- !u!1 &943387126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 58060003358763760, guid: b6f48a65d63498e46950454eb78de466, type: 3}
+  m_PrefabInstance: {fileID: 1731492899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &943387138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 943387126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 547279c1532a4c81911355bdc7acd633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _source: {fileID: 721312748}
+  _sounds:
+  - _id: Jump
+    _clip: {fileID: 8300000, guid: 60721311eff47ca4ab4e057950b9d7d9, type: 3}
+  - _id: Melee
+    _clip: {fileID: 8300000, guid: f1510682961a392459132aeb9230e77b, type: 3}
+  - _id: Range
+    _clip: {fileID: 8300000, guid: 97f0cde9f1e253f468f9b8279477e3a5, type: 3}
+  - _id: Hurt
+    _clip: {fileID: 8300000, guid: df1a059e403c32841b8e5e0c07df4f72, type: 3}
+  - _id: Throw
+    _clip: {fileID: 8300000, guid: 97f0cde9f1e253f468f9b8279477e3a5, type: 3}
 --- !u!1001 &1055714525
 PrefabInstance:
   m_ObjectHideFlags: 0
