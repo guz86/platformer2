@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 namespace UI.MainMenu
 {
     // обрабатывает клики на кнопки меню
-    
+
     public class MainMenuWindow : AnimatedWindow
     {
         private Action _closeAction;
-        
+
         public void OnShowSettings()
         {
             // путь к префабам UI
@@ -18,11 +18,12 @@ namespace UI.MainMenu
             var canvas = FindObjectOfType<Canvas>();
             Instantiate(window, canvas.transform);
         }
-        
+
         // сработают (анонимные функции) после проигрывания анимации
 
         public void OnStartGame()
-        {// помещаем код анонимной функции загрузка нового уровня
+        {
+            // помещаем код анонимной функции загрузка нового уровня
             _closeAction = () => { SceneManager.LoadScene("Level1"); };
             Close();
         }
@@ -32,14 +33,12 @@ namespace UI.MainMenu
             // помещаем код анонимной функции закрытия приложения, или остановки
             _closeAction = () =>
             {
-                
                 Application.Quit();
-            
+
                 //для редактора остановим проигрывание
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
 #endif
-                
             };
             Close();
         }

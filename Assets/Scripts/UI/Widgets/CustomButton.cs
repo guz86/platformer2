@@ -12,7 +12,7 @@ namespace UI.Widgets
         [SerializeField] private GameObject _normal;
         [SerializeField] private GameObject _pressed;
 
-        // как поймем что кнопка нажата
+        // как поймем что кнопка нажата, переопределим
         protected override void DoStateTransition(SelectionState state, bool instant)
         {
             
